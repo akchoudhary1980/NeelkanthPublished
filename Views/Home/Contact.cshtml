@@ -69,27 +69,6 @@
         });
     })
 </script>
-
-<link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/css/jquery.mCustomScrollbar.css">
-<script type="text/javascript" src="~/adminty-master/files/assets/pages/google-maps/google-maps.js"></script>
-
-<!-- Google map js -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script type="text/javascript">
-    var map;
-    function LoadGoogleMAP() {
-        var SetmapOptions = {
-            zoom: 10,
-            center: new google.maps.LatLng(-34.397, 150.644)
-        };
-        map = new google.maps.Map(document.getElementById('canvasMap'),
-            SetmapOptions);
-    }
-
-    google.maps.event.addDomListener(window, 'load', LoadGoogleMAP);
-
-</script>
-
 <div class="row">
     <div class="col-md-12">
         <div class="card layout">
@@ -102,7 +81,7 @@
                     <div class="col-md-8">
                         <h3> Enquiry Form</h3>
                         <br />
-                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post,new {id="contactform",name="contactform" }))
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contactform", name = "contactform" }))
                         {
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -150,18 +129,46 @@
                         }
 
                         <hr />
-                        <div class="form-group row">                           
+                        <div class="form-group row">
                             <h3 class="col-md-6">Live whatsapp Chat !</h3>
                             <div class="col-sm-6">
-                               <a href="https://api.whatsapp.com/send?phone=919589608667&text=I want to purchase" target="_blank">
-                                <img src="~/UploadFiles/whatsapp2.png" class="img-fluid" />
+                                <a href="https://api.whatsapp.com/send?phone=919589608667&text=I want to purchase" target="_blank">
+                                    <img src="~/UploadFiles/whatsapp2.png" class="img-fluid" />
                                 </a>
-                            </div>                           
+                            </div>
                         </div>
                     </div>
                 </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-2 col-2">
+                        <img src="~/UploadFiles/Common/GooglePayBarCode.jpg" class="img-fluid" />
+                    </div>
+                    <div class="col-sm-4 col-4">
+                        <h2><span>
+                                <img src="~/UploadFiles/Common/GooglePay.png" height="75"  />
+                            </span> Google Pay</h2>
+                    </div>
+                    <div class="col-sm-2 col-2">
+
+                        <img src="~/UploadFiles/Common/PhonePayBarCode.jpg" class="img-fluid" />
+                    </div>
+                    <div class="col-sm-4 col-4">
+                        <h2>
+                            <span>
+                                 <img src="~/UploadFiles/Common/PhonePay.png" height="75" />
+                            </span> Phone Pay
+                        </h2>
+                    </div>
+                    <div class="col-sm-12 col-12 text-center bg-success p-10">
+                        <h1>9340525377</h1>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+
 

@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Neelkanth Pharmacy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Right combination of natural, scientific, financial, managerial and operational skills to withstand the winds of change, A change towards using natural plant based products and put A Big stop towards chemical products">
+    <meta name="keywords" content="Plant based Nutrition combining Modern Science &amp; Ancient Ayurveda. From Meal Replacements, Collagen to Vegan Protein - we bring you Raw, Natural and Clean Nutrition">
+    <meta name="author" content="Anil Choudhary">
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/adminty-master/files/assets/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+
+
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/bootstrap/css/bootstrap.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/icofont/css/icofont.css">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/feather/css/feather.css">
+    <!-- Syntax highlighter Prism css -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/pages/prism/prism.css">
+
+
+    <!-- Style.css -->
+    <link href="~/Content/style1.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/css/pcoded-horizontal.min.css">
+    <!-- star theme css -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-1to10.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-horizontal.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-movie.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-pill.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-reversed.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-square.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/css-stars.css">
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/slick-carousel/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/slick-carousel/css/slick-theme.css">
+
+
+
+    <link href="~/Content/Layoutcss.css" rel="stylesheet" />
+    <link href="~/Content/css-collection.css" rel="stylesheet" />
+    <style>
+        .card {
+            border-radius: 0px;
+        }
+    </style>
+
+    <style type="text/css">
+        .sticky-container {
+            padding: 0px;
+            margin: 0px;
+            position: fixed;
+            right: -193px;
+            top: 50%;
+            width: 250px;
+            z-index: 1100;
+        }
+
+        .sticky li {
+            list-style-type: none;
+            background-color: darkgreen;
+            height: 55px;
+            padding-left: 3px;
+            padding-top: 3px;
+            margin: 0px 0px 1px 0px;
+            -webkit-transition: all 0.25s ease-in-out;
+            -moz-transition: all 0.25s ease-in-out;
+            -o-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+        }
+
+            .sticky li:hover {
+                margin-left: -150px;
+            }
+
+            .sticky li a {
+                padding-top: 5px;
+                margin: 0px;
+                text-decoration: none;
+                color: white;
+            }
+    </style>
+
+    <!--for Search Items-->
+    <script type="text/javascript">
+        function seachbox() {
+            //alert('come');
+            var search = $('#txtsearch').val();
+            if (search != "") {
+                //
+                    // call Ajax Method
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("SeachProduct","Home")',
+                        dataType: 'json',
+                        data: {SearchValue:search},
+                        success: function (data) {
+                        window.location.href = "@Url.Action("Shopping", "Home")";
+                        //DisplayData(data);
+                        }
+                    });
+                ///
+            }
+        }
+    </script>
+</head>
+
+<!-- Menu horizontal fixed layout -->
+<body>
+
+    <!-- End for Sweet Alert-->
+    <script type="text/javascript">
+        // define here call here
+        function ShowMessage(message) {
+            Swal.fire({
+                title: "Warrning !",
+                text: message,
+                type: "success",
+                confirmButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+            });
+        }
+    </script>
+    @if (ViewBag.SweetMessage != null)
+    {
+        // call here
+        <script type="text/javascript">
+            @Html.Raw(ViewBag.SweetMessage)
+        </script>
+    }
+
+
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-container">
+            <!-- Menu Top Strip Menu start -->
+            <nav class="navbar header-navbar pcoded-header" style="background-color:seagreen; min-height:75px;">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo" style="background-color:seagreen;min-height:75px;">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu"></i>
+                        </a>
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="~/UploadFiles/piggies.png" class="img-fluid" alt="Theme-Logo" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+                                        <input id="txtsearch" type="text" class="form-control">
+                                        <span class="input-group-addon search-btn">
+                                            <i class="feather icon-search" onclick="seachbox()"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" onclick="javascript:toggleFullScreen()">
+                                    <i class="feather icon-maximize full-screen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="header-notification">
+
+                                <a href="@Url.Action("ShoppingChart", "Home")">
+                                    <span> My Cart </span>
+                                    <i class="feather icon-shopping-cart"></i>
+                                    <span class="badge bg-c-pink">@Session["ItemCount"]</span>
+                                </a>
+                                @*<div class="dropdown-primary dropdown">
+                                        <div class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="feather icon-shopping-cart"></i>
+                                            <span class="badge bg-c-pink">@Session["ItemCount"]</span>
+                                        </div>
+                                    </div>*@
+                            </li>
+                            <li class="user-profile header-notification">
+                                <a href="@Url.Action("LoginPassword", "Login")" style="font-size:16px;">Login</a>
+                            </li>
+                            <li class="user-profile header-notification">
+                                <a href="@Url.Action("SignIn", "Login")" style="font-size:16px;">Sign In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Menu header end -->
+            <!-- Menu Lower Menu Start -->
+            <div class="pcoded-main-container mybg">
+                <nav class="pcoded-navbar" style="background-color:ghostwhite; min-height:60px;">
+                    <div class="pcoded-inner-navbar">
+                        <ul class="pcoded-item pcoded-right-item">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                    <span class="pcoded-mtext">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Shopping", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-repeat"></i></span>
+                                    <span class="pcoded-mtext">Product Shopping</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Registration", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-layout"></i></span>
+                                    <span class="pcoded-mtext">Registration</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Dealers", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                    <span class="pcoded-mtext">Dealers</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("About", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                    <span class="pcoded-mtext">About Us</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Contact", "Home")">
+                                    <span class="pcoded-micon"><i class="feather icon-phone"></i></span>
+                                    <span class="pcoded-mtext">Contact</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+
+                <!-- Sidebar chat start -->
+                <!-- Sidebar inner chat end-->
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content ">
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+
+                                        @RenderBody()
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sticky-container">
+                                <ul class="sticky">
+                                    <li>
+                                        <a href="https://api.whatsapp.com/send?phone=9589608667&text=Start%20Whatsapp%20Chating" target="_blank" style="font-size:x-large;"> <i class="icofont icofont-social-whatsapp icofont-2x" style="color:white"></i> 9589608667</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            @*<div id="styleSelector">
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <!-- ======= Footer ======= -->
+                <footer id="footer">
+                    <div class="footer-top">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-6 footer-info">
+                                    <h4>ABOUT US</h4>
+                                    <p>
+                                        We belive on long term relationship with our customers, so try to provide best services and take care of our customers, listen there problem and short out it. Our vision for the company is to make it grow and maximise our market share by targeting more than one segment of the market
+                                    </p>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 footer-links">
+                                    <h4>Useful Links</h4>
+                                    <ul>
+                                        <li><a href="@Url.Action("ShippingDeliveryPolicy", "Home")">Shipping & Delivery Policy</a></li>
+                                        <li><a href="@Url.Action("DisclaimerPolicy", "Home")">Disclaimer Policy</a></li>
+                                        <li><a href="@Url.Action("PrivacyPolicy", "Home")">Privacy Policy</a></li>
+                                        <li><a href="@Url.Action("RefundPolicy", "Home")">Cancellation & Refund Policy</a></li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 footer-contact">
+                                    <h4>Contact Us</h4>
+                                    <p>
+                                        <b>Neelkanth Pharmacy</b>
+                                        <br>Head Office : 1229, Ukhari Road, Jabalpur(MP)-482002
+                                        Factory : 13/41, Industrial Area, Richhai, Jabalpur(MP)
+                                        Mobile: 9589608667, Email: neelkanthpharmacy@gmail.com
+                                    </p>
+                                    <div class="social-links">
+                                        <a href="#" class="twitter"><i class="icofont icofont-social-twitter"></i></a>
+                                        <a href="#" class="facebook"><i class="icofont icofont-social-facebook"></i></a>
+                                        <a href="#" class="instagram"><i class="icofont icofont-social-instagram"></i></a>
+                                        <a href="#" class="linkedin"><i class="icofont icofont-social-linkedin"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="copyright">
+                            Copyright &copy; 2016 Neelkanth Pharmacy. &nbsp;All Rights Reserved.
+                        </div>
+                        <div class="credits">
+                            <!-- All the links in the footer should remain intact. -->
+                            <!-- You can delete the links only if you purchased the pro version. -->
+                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
+                            Designed by <a href="http://jabalpuryellowpages.co.in/index">Goodwill Enterprises</a>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End Footer -->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/popper.js/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/form-validation.js"></script>
+    <script src="~/Scripts/AjaxModules.js"></script>
+
+    <!-- Start for Sweet Alert-->
+    <link href="~/adminty-master/files/bower_components/sweets/animate.css" rel="stylesheet" />
+    <link href="~/adminty-master/files/bower_components/sweets/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/adminty-master/files/bower_components/sweets/polyfill.min.js"></script>
+    <script src="~/adminty-master/files/bower_components/sweets/sweet-alerts.js"></script>
+    <script src="~/adminty-master/files/bower_components/sweets/sweetalert2.all.min.js"></script>
+
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/modernizr/js/modernizr.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/modernizr/js/css-scrollbars.js"></script>
+
+    <!-- Syntax highlighter prism js -->
+    <script type="text/javascript" src="~/adminty-master/files/assets/pages/prism/custom-prism.js"></script>
+    <!-- i18next.min.js -->
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next/js/i18next.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+    <!-- Custom js -->
+    <script src="~/adminty-master/files/assets/js/pcoded.min.js"></script>
+    <script src="~/adminty-master/files/assets/js/menu/menu-hori-fixed.js"></script>
+    <script src="~/adminty-master/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/assets/js/script.js"></script>
+
+
+
+    <!-- barrating js -->
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-bar-rating/js/jquery.barrating.min.js"></script>
+    <script type="text/javascript" src="~/adminty-master/files/assets/pages/rating/rating.js"></script>
+    <!-- slick js -->
+    <script type="text/javascript" src="~/adminty-master/files/bower_components/slick-carousel/js/slick.min.js"></script>
+    <!-- product detail js -->
+    <script type="text/javascript" src="~/adminty-master/files/assets/pages/product-detail/product-detail.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    
+        $(document).ready(function(){
+            ordercount();
+            newordercount()
+        });
+    // get order count
+    function ordercount() {
+        $.ajax({
+            type: "POST",
+            url: '/Share/GetOrderCount',           
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var str = response;
+                $('#orders').text(str);
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }
+    // get new order count
+    function newordercount() {
+        $.ajax({
+            type: "POST",
+            url: '/Share/GetNewOrderCount',           
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var str = response;
+                $('#neworders').text(str);
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }   
+</script>
+
+<nav class="pcoded-navbar" pcoded-header-position="relative">
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="pcoded-navigatio-lavel">Neelkanth Pharmacy</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="@Url.Action("Dashboard", "Customer")">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Dashboard</span>
+                </a>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="#">
+                    <span class="pcoded-micon"><i class="feather icon-shopping-cart"></i></span>
+                    <span class="pcoded-mtext">Order</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="@Url.Action("OrderNew", "Order")">
+                            <span class="pcoded-mtext">Order List </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="@Url.Action("OrderAll", "Order")">
+                            <span class="pcoded-mtext">Track Order</span>
+                        </a>
+                    </li>                    
+                </ul>
+            </li>            
+            <li class="pcoded-hasmenu">
+                <a href="#">
+                    <span class="pcoded-micon"><i class="feather icon-shopping-cart"></i></span>
+                    <span class="pcoded-mtext">My Profile</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="@Url.Action("EnquiryNew", "Enquiry")">
+                            <span class="pcoded-mtext">Update Profile </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="@Url.Action("EnquiryAll", "Enquiry")">
+                            <span class="pcoded-mtext">Change Password</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+          
+        </ul>
+       
+    </div>
+</nav>

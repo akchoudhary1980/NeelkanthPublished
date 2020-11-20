@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card layout">
+            <div class="card-block">
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4" style="margin-bottom:20px;">
+                        <img src="~/UploadFiles/Common/thanks.jpg" class="img-fluid" />
+                    </div>
+                    <div class="col-md-5" style="margin-bottom:20px;">
+                        <h1 class="alert alert-danger">Payment Transaction Failure</h1>
+
+                        <h2>Dear Guest</h2>
+                        <hr />
+                        <h3>We apologise for the inconvenience.</h3>
+                        <h3>Our Executive will you call you shortly</h3>
+                        <p>Call : 9589608667</p>
+                        @if(Session["ErrorMessage"]!=null)
+                        {
+                        <h4 class="alert alert-danger">Error Message : @Session["ErrorMessage"].ToString()</h4>
+                        Session.Remove("ErrorMessage");
+                        }                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

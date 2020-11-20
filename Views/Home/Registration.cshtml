@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "c";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.2.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/AjaxModules.js"></script>
+
+<script type="text/javascript">
+    function refreshCaptcha() {
+        $.ajax({
+            type: "POST",
+            url: "/Login/RefereceCaptcha",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: OnSuccess1,
+            failure: function (data) {
+                alert(data.d);
+            }
+        });
+    }
+    function OnSuccess1(data) {
+        d = new Date();
+        $('#captcha').attr("src", "/UploadFiles/captcha.jpg?" + d.getTime());
+    }
+</script>
+<script>
+    SetInputMobile('Mobile');
+</script>
+<script type="text/javascript">
+    function uploadImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#customerpic')
+                    .attr('src', e.target.result)
+                    .width(300)
+                    .height(200);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    // Get State List
+    $(document).ready(function () {
+        $("#State").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Share/StateAutoComplete",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.StateName, value: item.StateName, id: item.StateID };
+                        }))
+                    },
+                })
+            },
+            select: function (event, ui) {
+                // alert(ui.item.id);
+                $("#State").val(ui.item.id);
+                // $('#CusID').val(response);
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+    // Get City List
+    $(document).ready(function () {
+        $("#City").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Share/CityAutoComplete",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CityName, value: item.CityName, id: item.CityID };
+                        }))
+                    },
+                })
+            },
+            select: function (event, ui) {
+                // alert(ui.item.id);
+                $("#City").val(ui.item.id);
+                // $('#CusID').val(response);
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card layout">
+            <div class="card-block">
+
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-md-3" style="margin-bottom:20px;">
+                        <img src="~/UploadFiles/contactus.jpg" class="img-fluid" />
+                    </div>
+                    <div class="col-md-9">
+                        <h3> Registration Form</h3>
+                        <br />
+                        @using (Html.BeginForm("Registration", "Home", FormMethod.Post, new { id = "registrationform", name = "registrationform", enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group row">
+                                @Html.Label("Referal Code", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.TextBox("RegistrationNo", @Session["RefCode"], htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessage("RegistrationNo", "", new { @class = "text-danger" })
+                                </div>
+                                @Html.Label("Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.TextBox("Date", @Session["Date"], htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.Label("Mobile *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.Editor("Mobile", new { htmlAttributes = new { @class = "form-control", maxlength = "10" } })
+                                    @Html.ValidationMessage("Mobile", "", new { @class = "text-danger" })
+                                </div>
+                                @Html.Label("Password *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.Password("Password", "", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.Label("Email *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-10">
+                                    @Html.Editor("Email", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.Label("Customer Name *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-10">
+                                    @Html.Editor("CustomerName", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("CustomerName", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.Label("Address", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-10">
+                                    @Html.TextArea("Address", "", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessage("Address", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.Editor("City", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("City", "", new { @class = "text-danger" })
+                                </div>
+                                @Html.Label("State", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-4">
+                                    @Html.Editor("State", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("State", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="form-group row">
+                                @Html.Label("Customer Photo", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <p>Customer Photo 200px X 300px</p>
+                                    <img id="customerpic" src="" alt="" class="img-fluid img-thumbnail" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type='file' name="FileUpload" onchange="uploadImage(this);" class="btn btn-success pull-right" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.Label("Captcha Code", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                <div class="col-sm-4">
+                                    @Html.TextBox("CaptchaCode", null, new { required = "Please enter captcha code", placeholder = "Captcha Code", @class = "form-control", maxlength = "6" })
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <img id="captcha" src="~/UploadFiles/captcha.jpg?" + new Date().getTime(); />
+                                </div>
+                                <div class="col-sm-2">
+                                    <button id="refCpatcha" type="button" onclick="refreshCaptcha();" class="btn btn-success text-center m-b-20 float-right"><i class="icofont icofont-refresh"></i></button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-sm-2">
+                                    <div class=" float-right">
+                                        @Html.CheckBox("AcceptTerms", htmlAttributes: new { @class = "control-label" }) I accept <b>Terms & Conditions.</b>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="submit" value="Register" class="btn btn-primary btn-out float-right" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-sm-2 ">
+                                    <label class="control-label float-right">
+                                        Already have an account <b style="color:blue"> <a href="@Url.Action("Index", "Login")">Login</a></b> hare.
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

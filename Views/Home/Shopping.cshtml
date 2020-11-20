@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Neel.Models.ProductModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--for Add Shopping Trans Data-->
+<script type="text/javascript">
+    function addShopItems(id) {       
+        var itemid, qty;
+        itemid = id;
+        qty = 1;
+        // call Ajax Method
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddShopTransData")',
+            dataType: 'json',
+            data: {iID:itemid, iQty:qty},
+            success: function (data) {              
+               
+                window.location.href = "@Url.Action("ShoppingChart", "Home")";
+                //DisplayData(data);                
+            }
+        });
+    }
+</script>
+
+<section style="margin-top:40px;">
+    <!-- Product list start -->
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="card prod-view">
+                    <div class="prod-item text-center">
+                        <div class="prod-img">
+                            <div class="option-hover">
+                                <button type="button" onclick="addShopItems(@item.ProductID);" class="btn btn-success btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                    <i class="icofont icofont-cart-alt f-20"></i>
+                                </button>                               
+                                <a href="@Url.Action("ProductDetails", "Home",new { id = item.ProductID })" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                    <i class="icofont icofont-list f-20"></i>
+                                </a>
+                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                    <i class="icofont icofont-eye-alt f-20"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                    <i class="icofont icofont-heart-alt f-20"></i>
+                                </button>
+                            </div>
+                            <a href="@Url.Action("ProductDetails", "Home", new { id = item.ProductID })" class="hvr-shrink">
+                                @if (item.Picture == "")
+                                {
+                                    <img src="~/UploadFiles/product.png" class="img-fluid o-hidden" alt="prod1.jpg">
+                                }
+                                else
+                                {
+                                    <img src="~/UploadFiles/@item.Picture" class="img-fluid o-hidden" alt="prod1.jpg">
+                                }
+                            </a>
+
+                            @{
+                                if (@item.IsNew == true)
+                                {
+                                    <div class="p-new"><a href=""> New </a></div>
+                                }
+                            }
+                        </div>
+                        <div class="prod-info">
+                            <a href="#!" class="txt-muted"><h4>@item.ProductName</h4></a>
+                            <div class="m-b-10">
+                                <label class="label label-success">3.5 <i class="fa fa-star"></i></label><a class="text-muted f-w-600">14 View &amp; 3 Like &amp; 0 Dislike </a>
+                            </div>
+                            <span class="prod-price">@Neel.TextLib.IndianRuppes(@item.Rate) <small class="old-price">@Neel.TextLib.IndianRuppes(@item.MRP)</small></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>   
+</section>

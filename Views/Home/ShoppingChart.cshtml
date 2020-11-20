@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Neel.Models.ShopTransaction>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string TotalAmount = "";
+    string TotalGST = "";
+    string GrandTotal = "";
+    string TotalDelivery = "";
+}
+    
+<!--for Add Shopping Trans Data-->
+<script type="text/javascript"> 
+        function updateShopItems(id) {
+            var itemid, qty;
+            itemid = id;
+            qty = $("#text" + id).val();
+        // call Ajax Method
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RefSTransData")',
+            dataType: 'json',
+            data: {iID:itemid, iQty:qty},
+            success: function (data) {
+                    window.location.href = "@Url.Action("ShoppingChart", "Home")";
+                    //DisplayData(data);
+                }
+            });
+    }
+</script>
+<section class="mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Shopping cart</h5>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-6 col-8">
+                            <h4> Your Shopping Cart </h4>
+                        </div>
+                        <div class="col-sm-6 col-4">
+                            <a href="@Url.Action("Shopping", "Home")" class="btn btn-success float-right">Add More Product</a>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Product Name</th>
+                                                <th>Qty</th>
+                                                <th class="text-right">Rate</th>
+                                                <th class="text-right">Amount</th>
+                                                <th>Update</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr class="odd">
+                                                    <td class="pro-list-img" tabindex="0">
+                                                        <img src="~/UploadFiles/@item.ItemPicture" class="img-fluid" width="125" alt="tbl">
+                                                    </td>
+                                                    <td class="pro-name" style="width:150px">
+                                                        <h6>@item.ItemName</h6>
+                                                        <span>@item.ItemShortDescription</span> <br />
+                                                        <span><b> Delivery Charge : @item.DeliveryCharge </b></span>
+                                                    </td>
+
+                                                    <td style="width:60px">
+                                                        <input type="number" id="text@(item.SerNo)" class="form-control" style="min-width:60px" value="@item.Quantity">
+                                                        
+                                                    </td>
+                                                    <td class="text-right">
+                                                        @item.Rate
+                                                    </td>
+                                                    <td class="text-right">@item.Amount</td>
+
+                                                    <td class="action-icon text-center">
+                                                        @*<a href="@Url.Action("RefSTransData", "Home",new { id = item.SerNo, qty = 2 })" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Update"><i class="icofont icofont-refresh"></i></a>*@
+                                                        <button type="button" id="@item.SerNo" onclick="updateShopItems(this.id)" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Update"><i class="icofont icofont-refresh"></i></button>
+                                                    </td>
+                                                    <td class="action-icon text-center">
+                                                        <a href="@Url.Action("RemovSTransData", "Home",new { id = item.SerNo })" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="icofont icofont-delete-alt"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                TotalAmount = item.TotalAmount;
+                                                TotalGST = item.GSTAmount;
+                                                TotalDelivery = item.DeliveryTotal;
+                                                GrandTotal = item.GrandTotal;
+                                            }
+                                            <tr class="even">
+                                                <td colspan="4" class="text-right">Total</td>
+                                                <td class="text-right">@TotalAmount</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td colspan="4" class="text-right">GST / IGST</td>
+                                                <td class="text-right">@TotalGST</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td colspan="4" class="text-right">Delivery</td>
+                                                <td class="text-right">@TotalDelivery</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td colspan="4" class="text-right"><b>Grand Total</b></td>
+                                                <td class="text-right"><b>@GrandTotal</b></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="pb-3">
+                                <a href="@Url.Action("SignInCheckout", "Login")" class="btn btn-primary btn-out float-right">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

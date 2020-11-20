@@ -1,0 +1,213 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <style type="text/css">
+        @@font-face {
+            font-family: 'fontawesome-webfont';
+            src: url('../../adminty-master/files/assets/fonts/fontawesome-webfont.ttf') format('truetype');
+        }
+
+        .accordion .card-header:after {
+            font-family: 'fontawesome-webfont';
+            content: "\f068";
+            float: right;
+        }
+
+        .accordion .card-header.collapsed:after {
+            /* symbol for "collapsed" panels */
+            content: "\f067";
+        }
+
+        .question {
+            background-color: #C6E7CE !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            margin-bottom: 1px;
+        }
+
+            .question:hover {
+                background-color: #84CF96 !important;
+            }
+    </style>
+<section>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card layout" style="border-radius: 0px;">
+                <div class="card-block">
+                    <div class="leftbarheading">Cancellation & Refund Policy</div>
+                    <div class="row" style="margin-top:30px;">
+                        <div class="col-md-3" style="margin-bottom:20px;">
+                            <img src="~/UploadFiles/contactus.jpg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-9">
+                            <h5>Only few points to consider</h5>
+                            <p>You can initiate the return process by mailing us at neelkanthpharmacy@@gmail.com calling us on +91-7401307307</p>
+                            <p>The product should return us within 14 days of the date of the receipt of delivery.</p>
+                            <p>Please ensure the product is in its original condition, unopened and unused product along with the original invoice, box and price tags.</p>
+                            <p>If in case the courier is found ineligible for refund, we will send the product back to you.</p>
+                            <p>You will have an option to take refund or exchange the product, as per your request. For payment made by card we will refund in the same bank account. For money paid by cash on delivery or any other mode we will issue cheque in the registered name of customer. </p>
+                            <p>Please note that replacements are subject to availability of particular products.</p>
+                            <p>Returns/replacements not applicable on orders delivered outside India.</p>
+                            <h5>Please follow the steps below for returning damaged, defective or wrong product</h5>
+                            <p>Please notify us within 14 days of receipt of the products and product should reach us within 10 days of sending the request.  </p>
+                            <p>Product should be returned in original packaging along with original box, price tags and invoice. </p>
+                            <p>As soon as we receive your items back, we inspect it to ensure everything is present and is in original conditions and then we issue the full refund or exchange with similar or different item as per your request.</p>
+                            <p>Please note that replacements are subject to availability of particular products.Payment made by card will be refunded on the same bank account and an online transfer will be issued on the bank details shared by the customer for payment made by Cash on delivery.</p>
+                            <h5>Eligibility for refund</h5>
+                            <p>Products which are unused and in its original new condition if not defective or damages.</p>
+                            <p>Products which are not tampered and is not missing its Serial/UPC number.</p>
+                            <p>Product returned back in its original packaging including box and other items as received along with the particular product.</p>
+                            <p>We are here to serve you best. Your satisfaction is our priority and if in case you have any query then please do mail us on Neelkanthpharmacy@@ gmail.com</p>
+
+
+                            <div id="accordion" class="accordion">
+                                <div class="card mb-0">
+
+
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id1">
+                                        <a class="card-title">
+                                            Q1. What is the general return policy on Neelkanth Products?
+                                        </a>
+                                    </div>
+                                    <div id="id1" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. In the unfortunate event that you are not satisfied with our products so we give an option for you to inform us within 14 days of the date of receipt of delivery.
+                                        </p>
+                                    </div>
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id2">
+                                        <a class="card-title">
+                                            Q2. What should I do if I receive a Defective item or not something which I ordered?
+                                        </a>
+                                    </div>
+                                    <div id="id2" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. Under such circumstances you can inform us within the 14 days of receipt of the product.  You can inform us on by writing a mail on Neelkanthpharmacy@gmail.com or calling us on +91-9589608667
+                                        </p>
+                                    </div>
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id3">
+                                        <a class="card-title">
+                                            Q3. What is your category specific policy for return?
+                                        </a>
+                                    </div>
+                                    <div id="id3" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A.Product Our products should be received in original packaging as you received Product should be sealed as original, opened or used boxes will not be accepted as returns. Factors such as stomach upset, headache, flavour like/dislike would not be applicable for return. Please consult with your doctor before buying the products.
+                                        </p>
+                                    </div>
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id4">
+                                        <a class="card-title">
+                                            Q4. Are there any processing fees for replacements or returns?
+                                        </a>
+                                    </div>
+                                    <div id="id4" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. The customer may be liable to pay a processing fee in case of returns or replacements under certain scenarios - including, but not limited to requesting a change of flavor/product/variant or any requests of similar nature. The processing fee amount will be conveyed to the customer at the time of taking the request for replacement or return and the request will be processed further after the payment for the processing fee has been processed.
+                                            In case of errors in the product such as incorrect product/variant/flavor shipped to the customer, there will be no processing fee applicable on requests for returns or replacement.
+                                            Returns/refunds may not be applicable for orders delivered outside India.
+
+                                        </p>
+                                    </div>
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id5">
+                                        <a class="card-title">
+                                            Q5. I need to return an item, how do I arrange for a pickup? ?
+                                        </a>
+                                    </div>
+                                    <div id="id5" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. You can Contact Us to initiate a return. You will receive a call explaining the process, once you have initiated a return.
+                                            Wherever possible we will facilitate the pick-up of the item through our courier partners. In case, the pick-up cannot be arranged by us, you can return the item through a third-party courier service and we will return the courier costs of Rs 100 for any courier charges borne by you to send the product to us.
+                                            may not be applicable for orders delivered outside India
+
+                                        </p>
+                                    </div>
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id6">
+                                        <a class="card-title">
+                                            Q6. What are the modes of refund available after cancellation or return?
+                                        </a>
+                                    </div>
+                                    <div id="id6" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. For payment made by:
+                                            Debit/Credit or any other Card- We will refund in the same bank account.
+                                            Cash on delivery or any other mode- An online transfer would be made using bank account details shared by the customer
+
+                                        </p>
+                                    </div>
+
+
+
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id7">
+                                        <a class="card-title">
+                                            Q7. In case of a refund, in how many days will the money be refunded?
+                                        </a>
+                                    </div>
+                                    <div id="id7" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. The money will HV the guidelines above in 14 working days.
+
+                                        </p>
+                                    </div>
+
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id8">
+                                        <a class="card-title">
+                                            Q8. In how many days will the product be delivered in the product replacement process?
+                                        </a>
+                                    </div>
+                                    <div id="id8" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. The product will be replaced and delivered to you in 14 working days after your request for replacement of product is approved.
+
+                                        </p>
+                                    </div>
+
+
+
+                                    <div class="card-header collapsed question" data-toggle="collapse" href="#id9">
+                                        <a class="card-title">
+                                            Q9. I have placed an order but due to some reason I need to cancel it. Can I do that?
+                                        </a>
+                                    </div>
+                                    <div id="id9" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
+                                        <p>
+                                            A. If we receive a cancellation notice and the order has not been processed/ approved by us, we shall cancel the order and refund the entire amount to User within 14 working days
+                                            We will not be able to cancel orders that have already been processed, it is pertinent to note that we have the full right to decide whether an order has been processed or not.
+
+
+                                        </p>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

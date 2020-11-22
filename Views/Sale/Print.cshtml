@@ -3,12 +3,12 @@
     System.Data.DataRow drCompany;
     System.Data.DataRow drSale;
     System.Data.DataRow drCustomer;
-    System.Data.DataTable saleTrans = new System.Data.DataTable();
+    System.Data.DataTable saleTrans = new System.Data.DataTable();    
 
-    drSale = Neel.DataLib.GetQueryRow("Select * from SalesModels Where SalesID =" + ViewData["id"].ToString()); // Purchase 
-    saleTrans = Neel.DataLib.GetQueryTable("Select * from SalesTransModels Where SalesID =" + ViewData["id"].ToString()); // Purchase Trans 
+    drSale = Neel.DataLib.GetQueryRow("Select * from SalesModels Where SalesID =" + ViewData["id"].ToString()); // sale     
+    saleTrans = Neel.DataLib.GetQueryTable("Select * from SalesTransModels Where SalesID =" + ViewData["id"].ToString()); // sale Trans 
     drCompany = Neel.DataLib.GetQueryRow("Select * from CompanyModels Where CompanyID = 1"); // Company 
-    drCustomer = Neel.DataLib.GetQueryRow("Select * from CustomerModels Where CustomerID = " + ViewData["id"].ToString()); // Customer               
+    drCustomer = Neel.DataLib.GetQueryRow("Select * from CustomerModels Where CustomerID = " + drSale["CustomerID"].ToString()); // Customer               
 
 }
 <!DOCTYPE html>

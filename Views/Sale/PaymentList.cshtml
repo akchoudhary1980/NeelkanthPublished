@@ -56,9 +56,7 @@
                                 <th>Sale No</th>
                                 <th>Customer Name</th>
                                 <th>Amount</th>
-                                <th>Payment Status</th>
-                                @*<th>Edit</th>
-                                <th>Del</th>*@
+                                <th>Payment Status</th>                              
                             </tr>
                         </thead>
 
@@ -66,20 +64,13 @@
                         {
                     <tr>
                         <td>@{count++;} @count</td>
-                        <td> @Neel.TextLib.GetDateDDMMYYYY(@Html.DisplayFor(modelItem => item.RecieptDate))</td>
+                        <td> @Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.RecieptDate))</td>
                         <td> @Html.DisplayFor(modelItem => item.TransactionID)</td>
                         <td> @Html.DisplayFor(modelItem => item.PaymentMode)</td>
                         <td> @Neel.DataLib.GetCellItems("Select SerialNo From SalesModels Where SalesID =" + @Html.DisplayFor(modelItem => item.SaleID))</td>
                         <td> @Neel.DataLib.GetCellItems("Select CustomerName From CustomerModels Where CustomerID =" + @Html.DisplayFor(modelItem => item.CustomerID))</td>
                         <td class="text-right"> @Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.Amount))</td>
                         <td> @Html.DisplayFor(modelItem => item.PaymentStatus)</td>
-
-                        @*<td>
-            <a href="@Url.Action("Edit", "Registration",new { id = item.RegistrationID })" class="btn btn-success btn-mini btn-outline-primary"><i class='icofont icofont-ui-edit'></i></a>
-        </td>
-        <td>
-            <a href="@Url.Action("Delete", "Registration",new { id = item.RegistrationID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-ui-close '></i></a>
-        </td>*@
                     </tr>
                         }
                         <tbody>

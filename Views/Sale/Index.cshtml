@@ -84,7 +84,7 @@
                             <tr>
                                 <td>@{count++;} @count</td>
                                 <td> @Html.DisplayFor(modelItem => item.SerialNo)</td>
-                                <td> @Html.Raw(Neel.TextLib.GetDateDDMMYYYY(@Html.DisplayFor(modelItem => item.SalesDate)))</td>
+                                <td> @Html.Raw(Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.SalesDate)))</td>
                                 <td> @Html.Raw(Neel.DataLib.GetCellItems("Select CustomerName from CustomerModels Where CustomerID =" + (@Html.DisplayFor(modelItem => item.CustomerID))))</td>
 
                                 <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleValue)))</td>

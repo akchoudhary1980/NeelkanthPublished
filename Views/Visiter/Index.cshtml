@@ -63,7 +63,7 @@
                         {
                     <tr>
                         <td>@{count++;} @count</td>                       
-                        <td> @Html.Raw(Neel.TextLib.GetDateDDMMYYYY(@Html.DisplayFor(modelItem => item.VisitDate)))</td>
+                        <td> @Html.Raw(Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.VisitDate)))</td>
                         <td> @Html.Raw(Neel.TextLib.GetTimeHHMM(@Html.DisplayFor(modelItem => item.StartTime)))</td>
                         <td> @Html.Raw(Neel.TextLib.GetTimeHHMM(@Html.DisplayFor(modelItem => item.EndTime)))</td>
                         <td> @Html.DisplayFor(modelItem => item.Duration)</td>

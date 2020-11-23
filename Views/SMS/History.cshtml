@@ -50,10 +50,7 @@
                                 <th>Time</th>
                                 <th>Customer</th>
                                 <th>Mobile</th>
-                                <th>Message</th>
-                                <th>Device</th>
-                                <th>Browser</th>
-                                <th>Machine IP</th>
+                                <th>Message</th>                                
                                 <th>SMS Count</th>                               
                                 <th>Del</th>
                             </tr>
@@ -63,14 +60,11 @@
                         {
                     <tr>
                         <td>@{count++;} @count</td>
-                        <td> @Html.Raw(Logo.TextLib.GetDateDDMMYYYY(@Html.DisplayFor(modelItem => item.SMSDate)))</td>
-                        <td> @Html.Raw(Logo.TextLib.GetTimeHHMM(@Html.DisplayFor(modelItem => item.SMSTime)))</td>
-                        <td> @Html.Raw(Logo.DataLib.GetCellItems("Select CustomerName from CustomerModels Where Mobile ='" + (@Html.DisplayFor(modelItem => item.Mobile))+"'"))</td>
+                        <td> @Html.Raw(Neel.TextLib.GetDateDDMMYYYY(@Html.DisplayFor(modelItem => item.SMSDate)))</td>
+                        <td> @Html.Raw(Neel.TextLib.GetTimeHHMM(@Html.DisplayFor(modelItem => item.SMSTime)))</td>
+                        <td> @Html.Raw(Neel.DataLib.GetCellItems("Select CustomerName from CustomerModels Where Mobile ='" + (@Html.DisplayFor(modelItem => item.Mobile))+"'"))</td>
                         <td> @Html.DisplayFor(modelItem => item.Mobile)</td>
-                        <td> @Html.DisplayFor(modelItem => item.SMSMessage)</td>
-                        <td> @Html.DisplayFor(modelItem => item.Device)</td>
-                        <td> @Html.DisplayFor(modelItem => item.Browser)</td>
-                        <td> @Html.DisplayFor(modelItem => item.DeviceIP)</td>
+                        <td> @Html.DisplayFor(modelItem => item.SMSMessage)</td>                        
                         <td> @Html.DisplayFor(modelItem => item.SMSCount)</td>
                         <td>
                            <a href="@Url.Action("DeleteHistory", "SMS", new { id = item.SMSTransID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-user-alt-3'></i></a>

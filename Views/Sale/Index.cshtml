@@ -72,7 +72,8 @@
                                 <th>Sale Value</th>
                                 <th>Sale GST</th>
                                 <th>Sale Total</th>
-                                <th>Print</th>                              
+                                <th>Confirm</th>
+                                <th>Print</th>
                                 <th>Del</th>
                             </tr>
                         </thead>
@@ -80,23 +81,26 @@
                         @foreach (var item in Model)
                         {
                             //string prefix = DataLib.GetCellItems("Select InvoicePrefix From CompanyModels Where CompanyID=" + @Html.DisplayFor(modelItem => item.CompanyID));           
-                            <tr>
-                                <td>@{count++;} @count</td>
-                                <td> @Html.DisplayFor(modelItem => item.SerialNo)</td>
-                                <td> @Html.Raw(Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.SalesDate)))</td>
-                                <td> @Html.Raw(Neel.DataLib.GetCellItems("Select CustomerName from CustomerModels Where CustomerID =" + (@Html.DisplayFor(modelItem => item.CustomerID))))</td>
+                    <tr>
+                        <td>@{count++;} @count</td>
+                        <td> @Html.DisplayFor(modelItem => item.SerialNo)</td>
+                        <td> @Html.Raw(Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.SalesDate)))</td>
+                        <td> @Html.Raw(Neel.DataLib.GetCellItems("Select CustomerName from CustomerModels Where CustomerID =" + (@Html.DisplayFor(modelItem => item.CustomerID))))</td>
 
-                                <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleValue)))</td>
-                                <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleGST)))</td>
-                                <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleTotal)))</td>
+                        <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleValue)))</td>
+                        <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleGST)))</td>
+                        <td> @Html.Raw(Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.SaleTotal)))</td>
 
-                                <td>
-                                    <a href="@Url.Action("PrintPreview", "Sale",new { id = item.SalesID })" class="btn btn-info btn-mini btn-outline-info"><i class='icofont icofont-print'></i></a>
-                                </td>                               
-                                <td>
-                                    <a href="@Url.Action("Delete", "Sale",new { id = item.SalesID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-ui-close '></i></a>
-                                </td>
-                            </tr>
+                        <td>
+                            <a href="@Url.Action("Confirm", "Sale",new { id = item.SalesID })" class="btn btn-info btn-mini btn-outline-info"><i class='icofont icofont-ui-check'></i></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("PrintPreview", "Sale",new { id = item.SalesID })" class="btn btn-info btn-mini btn-outline-info"><i class='icofont icofont-print'></i></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Sale",new { id = item.SalesID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-ui-close '></i></a>
+                        </td>
+                    </tr>
                         }
                         <tbody>
                         </tbody>

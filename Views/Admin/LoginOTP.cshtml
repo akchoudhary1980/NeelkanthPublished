@@ -1,154 +1,166 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neelkanth Pharmacy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/AjaxModules.js"></script>
+    <link href="~/Content/login-style.css" rel="stylesheet" />
+    <link href="~/adminty-master/files/assets/icon/icofont/css/icofont.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#coount').hide();
+            SetInputNumeric('Mobile');
+            SetInputMobile('OtpCode');
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#sendOTP").click(function () {
+                $("#sendOTP").attr("disabled", "disabled");
+                $('#coount').show();
+                sendOTPCodes();
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/AjaxModules.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#coount').hide();
-        SetInputNumeric('Mobile');
-        SetInputMobile('OtpCode');
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $("#sendOTP").click(function () {
-            $("#sendOTP").attr("disabled", "disabled");
-            $('#coount').show();
-            sendOTPCodes();
+                setTimeout(function () {
+                    $("#sendOTP").removeAttr("disabled");
+                }, 62000);
+                var timeLeft = 62;
+                var elem = document.getElementById('coount');
 
-            setTimeout(function () {
-                $("#sendOTP").removeAttr("disabled");
-            }, 62000);
-            var timeLeft = 62;
-            var elem = document.getElementById('coount');
+                var timerId = setInterval(countdown, 1000);
 
-            var timerId = setInterval(countdown, 1000);
-
-            function countdown() {
-                if (timeLeft == 0) {
-                    clearTimeout(timerId);
-                    // doSomething();
-                    elem.innerHTML = "";
-                } else {
-                    elem.innerHTML = timeLeft + ' seconds remaining';
-                    timeLeft--;
+                function countdown() {
+                    if (timeLeft == 0) {
+                        clearTimeout(timerId);
+                        // doSomething();
+                        elem.innerHTML = "";
+                    } else {
+                        elem.innerHTML = timeLeft + ' seconds remaining';
+                        timeLeft--;
+                    }
                 }
-            }
+            });
         });
-    });
-    function sendOTPCodes() {
-        var mess = "OTP Code for Login = ";
-        $.ajax({
-            type: "POST",
-            url: "/Login/VarifyandSendOTPCode",
-            dataType: "json",
-            data: "{'MobileNo': '" + $('#Mobile').val() + "','Message': '" + mess + "'}",
+        function sendOTPCodes() {
+            var mess = "OTP Code for Login = ";
+            $.ajax({
+                type: "POST",
+                url: "/Login/VarifyandSendOTPCode",
+                dataType: "json",
+                data: "{'MobileNo': '" + $('#Mobile').val() + "','Message': '" + mess + "'}",
 
-            contentType: "application/json; charset=utf-8",
-            success: OnSuccess,
-            failure: function (data) {
-                alert(data.d);
+                contentType: "application/json; charset=utf-8",
+                success: OnSuccess,
+                failure: function (data) {
+                    alert(data.d);
+                }
+            });
+            function OnSuccess(response) {
+                alert(response);
             }
-        });
-        function OnSuccess(response) {
-            alert(response);
         }
-    }
-</script>
-<script type="text/javascript">
-    function refreshCaptcha() {
-        $.ajax({
-            type: "POST",
-            url: "/Login/RefereceCaptcha",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: OnSuccess1,
-            failure: function (data) {
-                alert(data.d);
-            }
-        });
-    }
-    function OnSuccess1(data) {
-        d = new Date();
-        $('#captcha').attr("src", "/UploadFiles/captcha.jpg?" + d.getTime());
-    }
-</script>
-<section class="login-block">
-    <!-- Container-fluid starts -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <!-- Authentication card start -->
-                <div class="md-float-material form-material">
-                    <div class="text-center">
-                        <img src="~/adminty-master/files/assets/images/logo.png" alt="logo.png">
-                    </div>
-                    <div class="auth-box card">
-                        <div class="card-block">
-                            <div class="text-center">
-                                <img src="~/UploadFiles/login.png" class="img-fluid text-center" />
+    </script>
+    <script type="text/javascript">
+        function refreshCaptcha() {
+            $.ajax({
+                type: "POST",
+                url: "/Login/RefereceCaptcha",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: OnSuccess1,
+                failure: function (data) {
+                    alert(data.d);
+                }
+            });
+        }
+        function OnSuccess1(data) {
+            d = new Date();
+            $('#captcha').attr("src", "/UploadFiles/captcha.jpg?" + d.getTime());
+        }
+    </script>
+</head>
+<body class="bg-success">
+    <div class="container">        
+        <section class="row whitebox">
+            <div class="col-sm-6 loginside">
+                <div class="loginheader d-flex align-items-center justify-content-center">
+                    <img src="~/UploadFiles/piggies.png" />
+                </div>
+                <div class="loginbody">
+                    @using (Html.BeginForm("LoginOTP", "Login", FormMethod.Post))
+                    {
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <i class="icofont icofont-user-alt-3 icofont-2x" style="color:#E12B38"></i>
+                                <h4 class="text-uppercase float-right">Admin Login - OTP</h4>
                             </div>
-                            <br />
-                            <div class="row m-b-20">
-                                <div class="col-md-12">
-                                    <h3 class="text-left">Login with OTP</h3>
-                                </div>
-                            </div>
-                            @using (Html.BeginForm("LoginOTP", "Login", FormMethod.Post))
-                            {
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        @Html.TextBox("Mobile", null, new { required = "Please enter mobile number", placeholder = "Your Mobile Number", @class = "form-control", maxlength = "10" })
-                                        <span class="form-bar"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <label id="coount" style="color:red">Time Remaining</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button id="sendOTP" type="button" class="btn btn-success text-center m-b-20 float-right">Send OTP</button>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        @Html.TextBox("OtpCode", null, new { required = "Please enter otp code", placeholder = "Enter OTP", @class = "form-control", maxlength = "4",type = "password" })
-                                        <span class="form-bar"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <img id="captcha" src="~/UploadFiles/captcha.jpg" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        @Html.TextBox("CaptchaCode", null, new { required = "Please enter captcha code", placeholder = "Enter Captcha Code", @class = "form-control", maxlength = "6" })
-                                        <span class="form-bar"></span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button id="refCpatcha" type="button" onclick="refreshCaptcha();" class="btn btn-success text-center m-b-20 float-right"><i class="icofont icofont-refresh"></i></button>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <input type="submit" value="Login" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" />
-                                    </div>
-                                </div>
-                            }
-                            <p class="f-w-600 text-right"> <a href="@Url.Action("LoginPassword", "Login")">Login with Password</a></p>
-                            <p class="f-w-600 text-left"> <a href="@Url.Action("PasswordRecovery", "Login")">Forget Password</a></p>
                         </div>
-                    </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                @Html.TextBox("Mobile", null, new { required = "Please enter mobile number", placeholder = "Your Mobile Number", @class = "form-control border-success rounded-0", maxlength = "10" })
+                                <span class="form-bar"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                <label id="coount" style="color:red">Time Remaining</label>
+                            </div>
+                            <div class="col-md-4">
+                                <button id="sendOTP" type="button" class="btn btn-outline-primary rounded-0 float-right">Send OTP</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                @Html.TextBox("OtpCode", null, new { required = "Please enter otp code", placeholder = "Enter OTP", @class = "form-control border-success rounded-0", maxlength = "4", type = "password" })
+                                <span class="form-bar"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 col-4">
+                                <img id="captcha" src="~/UploadFiles/captcha.jpg" />
+                            </div>
+                            <div class="col-md-6 col-6">
+                                @Html.TextBox("CaptchaCode", null, new { required = "Please enter captcha code", placeholder = "Enter Captcha Code", @class = "form-control border-success rounded-0", maxlength = "6" })
+                                <span class="form-bar"></span>
+                            </div>
+                            <div class="col-md-2 col-2">
+                                <button id="refCpatcha" type="button" onclick="refreshCaptcha();" class="btn btn-outline-info rounded-0 float-right"><i class="icofont icofont-refresh"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input type="submit" value="Login" class="btn btn-outline-success rounded-0 float-right" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="pwd"><a href="@Url.Action("ForgetPassword", "Login")">Forget Password</a></label>
+                                <label for="pwd" class="float-right"><a href="@Url.Action("Index", "Login")">Login Password</a></label>
+                            </div>
+                        </div>
+                    }                  
                 </div>
             </div>
-            <!-- end of col-sm-12 -->
+            <div class="col-sm-6 picside">
+                <div class="picsidefooter d-flex align-items-center justify-content-center">
+                    <h5>Welcome to you Neelkanth Pharmacy India</h5>
+                </div>
+            </div>
+        </section>
+        <div class="row mt-3">
+            <div class="col-sm-12 text-center">
+                <h5><a class="sitelink" href="www.neelkanthpharmacyindia.com">www.neelkanthpharmacyindia.com</a></h5>
+            </div>
         </div>
-        <!-- end of row -->
     </div>
-    <!-- end of container-fluid -->
-</section>
-
-
+</body>
+</html>

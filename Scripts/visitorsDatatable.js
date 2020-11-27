@@ -1,26 +1,27 @@
-﻿function ConvertToDDMMYYYY(value) {   
+﻿function ConvertToDDMMYYYY1(stingdate) {
+    //alert(stingdate);
     var pattern = /Date\(([^)]+)\)/;
-    var results = pattern.exec(value);
-    var date = new Date(parseFloat(results[1]));    
-    year = date.getFullYear();
-    month = date.getMonth() + 1;
-    dt = date.getDate();
+    var results = pattern.exec(stingdate);
+    var mydate = new Date(parseFloat(results[1]));    
+    year = mydate.getFullYear();
+    month = mydate.getMonth() + 1;
+    day = mydate.getDate();
 
-    if (dt < 10) {
-        dt = '0' + dt;
+    if (day < 10) {
+        day = '0' + day;
     }
     if (month < 10) {
         month = '0' + month;
     }
-    var result = dt + '-' + month + '-' + year;
-    return result;
+    var outdate = day + '-' + month + '-' + year;
+    return outdate;
 }
-function ConvertToHHMMSS(value) {
-    //alert(value);
+function ConvertToHHMMSS1(stringtime) {
+    //alert(stringtime);
     //PT9H21M26.298S
-    var results = value.replace("PT", ""); 
+    var results = stringtime.replace("PT", ""); 
     //results = results.split("PT").join(""); //results.replace(/PT/, ''); 
-    alert(results);
+    //alert(results);
     //results = results.replace(/H/, ':'); 
     //results = results.replace(/M/, ':');
     return results;
@@ -74,29 +75,29 @@ $(document).ready(function () {
                 "data": "VisitDate", "name": "VisitDate", "autoWidth": true,
 
                 "render": function (data, type, full, meta) {
-                    return ConvertToDDMMYYYY(full.VisitDate);
-                },               
+                    return ConvertToDDMMYYYY1(full.VisitDate);
+                }               
             },
             {
                 "data": "StartTime", "name": "StartTime", "autoWidth": true,
 
                 "render": function (data, type, full, meta) {
                     return moment.duration(full.StartTime);
-                },               
+                }               
             },
             {
                 "data": "EndTime", "name": "EndTime", "autoWidth": true,
 
                 "render": function (data, type, full, meta) {
                     return moment.duration(full.EndTime);
-                },
+                }
             },
             {
                 "data": "Duration", "name": "Duration", "autoWidth": true,
 
                 "render": function (data, type, full, meta) {
                     return moment.duration(full.Duration);
-                },
+                }
             },
 
             { "data": "DeviceName", "name": "DeviceName", "autoWidth": true }, 

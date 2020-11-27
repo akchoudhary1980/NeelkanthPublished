@@ -52,11 +52,12 @@
                                 <th>#</th>
                                 <th>Date</th>
                                 <th>Transaction ID</th>
-                                <th>Payment Mode</th>
+                                <th>Mode</th>
+                                <th>Payment Getway</th>
                                 <th>Sale No</th>
                                 <th>Customer Name</th>
                                 <th>Amount</th>
-                                <th>Payment Status</th>                              
+                                <th>Payment Status</th>
                             </tr>
                         </thead>
 
@@ -67,6 +68,7 @@
                         <td> @Neel.TextLib.GetLeftDate(@Html.DisplayFor(modelItem => item.RecieptDate))</td>
                         <td> @Html.DisplayFor(modelItem => item.TransactionID)</td>
                         <td> @Html.DisplayFor(modelItem => item.PaymentMode)</td>
+                        <td> @Html.DisplayFor(modelItem => item.yPaymentGetwayName)</td>
                         <td> @Neel.DataLib.GetCellItems("Select SerialNo From SalesModels Where SalesID =" + @Html.DisplayFor(modelItem => item.SaleID))</td>
                         <td> @Neel.DataLib.GetCellItems("Select CustomerName From CustomerModels Where CustomerID =" + @Html.DisplayFor(modelItem => item.CustomerID))</td>
                         <td class="text-right"> @Neel.TextLib.IndianRuppes(@Html.DisplayFor(modelItem => item.Amount))</td>

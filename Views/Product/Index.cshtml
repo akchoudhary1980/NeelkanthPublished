@@ -1,8 +1,7 @@
-﻿@model IEnumerable<Neel.Models.ProductModel>
-@{
+﻿@{
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
-@{ int count = 0;}
+
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -48,50 +47,22 @@
             </div>
             <div class="card-block">
                 <div class='dt-responsive table-responsive'>
-                    <table id='cbtn-selectors' class='table table-striped table-bordered nowrap'>
+                    <table id='cbtn-selectors1' class='table table-striped table-bordered nowrap'>
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Picture</th>
-                                <th>Product Name</th>
+                                <th>Product Name</th>    
+                                <th>Category</th>
                                 <th>Unit</th>
                                 <th>MRP</th>
                                 <th>Rate</th>
-                                <th>GST Slab</th>
-                                <th>Category</th>
+                                <th>GST Slab</th>                                
                                 <th>Edit</th>
                                 <th>Del</th>
                             </tr>
                         </thead>
-
-                        @foreach (var item in Model)
-                        {
-                    <tr>
-                        <td>@{count++;} @count</td>
-                        @if (item.Picture == "")
-                        {
-                            <td><img src="~/UploadFiles/product.png" alt="" height="50" /></td>
-                        }
-                        else
-                        {
-                            <td><img src="~/UploadFiles/@item.Picture?"+ @DateTime.Now.TimeOfDay alt="" height="50" /></td>
-                        }
-                        <td> @Html.DisplayFor(modelItem => item.ProductName)</td>
-                        <td> @Html.Raw(Neel.DataLib.GetCellItems("Select UnitName From UnitModels Where UnitID =" + (@Html.DisplayFor(modelItem => item.UnitID))))</td>
-                        <td> @Neel.TextLib.IndianRuppes(item.MRP)</td>
-                        <td> @Neel.TextLib.IndianRuppes(item.Rate)</td>
-                        <td> @Html.Raw(Neel.DataLib.GetCellItems("Select GSTSlabName From GSTSlabModels Where GSTSlabID =" + (@Html.DisplayFor(modelItem => item.GSTSlabID))))</td>
-                        <td> @Html.Raw(Neel.DataLib.GetCellItems("Select CategoryName From CategoryModels Where CategoryID =" + (@Html.DisplayFor(modelItem => item.CategoryID))))</td>
-                        <td>
-                            <a href="@Url.Action("Edit", "Product",new { id = item.ProductID })" class="btn btn-success btn-mini btn-outline-primary"><i class='icofont icofont-ui-edit'></i></a>
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Delete", "Product",new { id = item.ProductID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-ui-close '></i></a>
-                        </td>
-                    </tr>
-                        }
-                        <tbody>
-                        </tbody>
+                        
                     </table>
                 </div>
             </div>
@@ -99,3 +70,4 @@
     </div>
 </div>
 
+<script src="~/Scripts/productDatatable.js"></script>

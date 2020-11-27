@@ -284,6 +284,25 @@ function RemoveIndianCulture(id) {
 }
 
 
+function ConvertToDDMMYYYY(dateString) {
+    date = new Date(dateString);
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+        dt = '0' + dt;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+    var result = dt + '-' + month + '-' + year;
+    return result;
+}
+function ConvertToIndian(num) {
+    result = new Number(num).toLocaleString("hi-IN", { maximumFractionDigits: 2, style: 'currency', currency: 'INR' });
+    return result;
+}
 
 function SetHindiInput(id) {
     $(document).ready(function () {

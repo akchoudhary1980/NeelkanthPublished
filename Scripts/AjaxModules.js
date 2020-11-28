@@ -283,6 +283,11 @@ function RemoveIndianCulture(id) {
     $('#' + id).val(str);
 }
 
+function ClearCulture(str) {    
+    str = str.replace("₹", "");
+    str = str.replace(",", "");
+    return str;
+}
 
 function ConvertToDDMMYYYY(dateString) {
     date = new Date(dateString);

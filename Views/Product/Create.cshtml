@@ -7,6 +7,57 @@
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/AjaxModules.js"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        // check box 
+        $('#GSTInclusive').change(function () {
+            if ($(this).is(":checked")) {
+                // get GST Slab value 
+                var gstid = $('#GSTSlabID').val();
+
+                if (gstid == "") {
+                    alert("Please select GST percent");
+                }
+                else {
+                    // Call Ajax method 
+                    var gst = GetPercent(gstid);                   
+                    var p = $('#Rate').val();
+                    p = ClearCulture(p);
+                    var r = parseFloat(p) * 100 / parseFloat(gst);
+                    r = ConvertToIndian(r);
+                    $('#Rate').val(r);
+                }
+            }
+            else {
+                $('#Rate').val($('#Price').val());
+            }           
+        });
+
+        $("#Price").blur(function () {
+            var price = $('#Price').val();
+            price = ConvertToIndian(price);
+            $('#Rate').val(price);           
+        });
+    });
+    function GetPercent(id) {
+        var gst = 0;
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: '/Product/GetGSTPercent',
+            data: "{'ID': '" + id + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {             
+              gst=response;
+            },
+            failure: function (response) {
+                alert(response);
+            }
+        });
+        return gst;
+    }
+</script>
+<script type="text/javascript">
     // main picture 
     function uploadPicture(input) {
         if (input.files && input.files[0]) {
@@ -78,6 +129,7 @@
     SetIntegerIndian("DisLike");
     SetIntegerIndian("View");
     SetIntegerIndian("Rating");
+    SetInputNumericIndian("Price");
     SetInputNumericIndian("Rate");
     SetInputNumericIndian("MRP");
     SetIntegerIndian("StockQty");
@@ -90,6 +142,7 @@
         RemoveIndianCulture("DisLike");
         RemoveIndianCulture("View");
         RemoveIndianCulture("Rating");
+        RemoveIndianCulture("Price");
         RemoveIndianCulture("Rate");
         RemoveIndianCulture("MRP");
         RemoveIndianCulture("StockQty");
@@ -204,11 +257,33 @@
                             @Html.EditorFor(model => model.MRP, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.MRP, "", new { @class = "text-danger" })
                         </div>
+                        @Html.LabelFor(model => model.GSTSlabID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.GSTSlabID,
+                             Neel.Controllers.ProductController.GetGSTSlabList(), new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.GSTSlabID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
 
                         @Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-2">                           
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                       
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
                             @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.GSTInclusive, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                <label>@Html.CheckBoxFor(model => model.GSTInclusive)&nbsp;Yes</label>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.GSTInclusive, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group row">
@@ -217,7 +292,7 @@
                             @Html.EditorFor(model => model.DeliveryCharge, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.DeliveryCharge, "", new { @class = "text-danger" })
                         </div>
-                        @Html.LabelFor(model => model.DisplayOn, htmlAttributes: new { @class = "control-label col-md-2", @style="color:red" })
+                        @Html.LabelFor(model => model.DisplayOn, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:red" })
                         <div class="col-md-4">
                             @Html.DropDownListFor(model => model.DisplayOn,
                              Neel.Controllers.ProductController.GetDisplayOnList(), new { @class = "form-control" })
@@ -238,23 +313,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.GSTInclusive, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            <div class="checkbox">
-                                <label>@Html.CheckBoxFor(model => model.GSTInclusive)&nbsp;Yes</label>
-                            </div>
-                            @Html.ValidationMessageFor(model => model.GSTInclusive, "", new { @class = "text-danger" })
-                        </div>
 
-                        @Html.LabelFor(model => model.GSTSlabID, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.DropDownListFor(model => model.GSTSlabID,
-                             Neel.Controllers.ProductController.GetGSTSlabList(), new { @class = "form-control" })
-
-                            @Html.ValidationMessageFor(model => model.GSTSlabID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
                     <h4 class="sub-title" style="color:darkmagenta">Product Shopping</h4>
 
                     <div class="form-group row">

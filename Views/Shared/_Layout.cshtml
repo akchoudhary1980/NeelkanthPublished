@@ -47,6 +47,17 @@
 
     <link href="~/Content/Layoutcss.css" rel="stylesheet" />
     <link href="~/Content/css-collection.css" rel="stylesheet" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185256769-1">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-185256769-1');
+    </script>
+
     <style>
         .card {
             border-radius: 0px;
@@ -319,7 +330,7 @@
                                         <li><a href="@Url.Action("PrivacyPolicy", "Home")">Privacy Policy</a></li>
                                         <li><a href="@Url.Action("RefundPolicy", "Home")">Cancellation & Refund Policy</a></li>
                                         <li><a href="#">Health Tips</a></li>
-                                        <li><a href="#">Health Cards</a></li>
+                                        <li><a href="@Url.Action("HealthCard", "Home")">Health Cards</a></li>
                                         <li><a href="#">Investors</a></li>
 
                                     </ul>

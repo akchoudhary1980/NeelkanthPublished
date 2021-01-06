@@ -6,18 +6,38 @@
 <script src="~/Scripts/jquery-ui-1.10.2.js"></script>
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/AjaxModules.js"></script>
+
+@*For Editor*@
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+
 <script type="text/javascript">
+    var quill;
+    
+
     $(document).ready(function () {
+
+        quill  = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        //Code for Set the value
+        var value = $('#FullDescription').val();
+        var delta = quill.clipboard.convert(value);
+        quill.setContents(delta, 'silent')
+   //  End
+    
+
         // set default value \
         //var gstinc = $('#GSTInclusive').val();
         //if (gstinc == "true") {
-        //    var gstper = GetPercent($('#GSTSlabID').val()); 
+        //    var gstper = GetPercent($('#GSTSlabID').val());
         //    var rate = $('#Rate').val();
         //    $('#Price').val(rate);
         //    var amt = parseFloat(rate) * 100 / parseFloat(gstper);
-        //    $('#Rate').val(amt);              
+        //    $('#Rate').val(amt);
         //}
-       
+
         // check box
         $('#GSTInclusive').change(function () {
             if ($(this).is(":checked")) {
@@ -158,6 +178,10 @@
         RemoveIndianCulture("StockQty");
         RemoveIndianCulture("AlertStockQty");
         RemoveIndianCulture("DeliveryCharge");
+        // Set the Value 
+        var editor_content = quill.root.innerHTML;
+        //alert(editor_content);
+        $('#FullDescription').val(editor_content);
     }
 </script>
 
@@ -237,11 +261,13 @@
                     </div>
                     <div class="form-group row">
                         @Html.LabelFor(model => model.FullDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.FullDescription, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.FullDescription, "", new { @class = "text-danger" })
+                         <div class="col-md-10">
+                            <div id="editor"> </div>
+                            @Html.HiddenFor(model => model.FullDescription)
                         </div>
                     </div>
+                    <br />
+                    <br />
 
                     <div class="form-group row">
                         @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -427,7 +453,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="submit" value="Update" onclick="FormValidation();" class="btn btn-primary btn-out float-right" />
+                            <input type="submit" value="Update" onclick="return FormValidation();" class="btn btn-primary btn-out float-right" />
                         </div>
                     </div>
                 }

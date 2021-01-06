@@ -2,6 +2,12 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    ul {
+        list-style-type: square;
+    }     
+</style>
 <!--for Add Shopping Trans Data-->
 <script type="text/javascript">
     function addShopItems(id) {
@@ -123,9 +129,9 @@
                                     <br />
                                     Delivery Charge : @Neel.TextLib.IndianRuppes(Model.DeliveryCharge)
                                     <hr>
-                                    <p>
-                                        @Model.FullDescription
-                                    </p>
+                                    <div>
+                                        @Html.Raw(@Model.FullDescription)
+                                    </div>                                    
                                     <hr>
                                     <h6 class="f-16 f-w-600 m-t-10 m-b-10">Quantity</h6>
                                 </div>

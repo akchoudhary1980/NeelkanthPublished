@@ -6,20 +6,24 @@
 <script src="~/Scripts/jquery-ui-1.10.2.js"></script>
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/AjaxModules.js"></script>
+@*For Editor*@ 
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        // check box 
+        // check box
         $('#GSTInclusive').change(function () {
             if ($(this).is(":checked")) {
-                // get GST Slab value 
+                // get GST Slab value
                 var gstid = $('#GSTSlabID').val();
 
                 if (gstid == "") {
                     alert("Please select GST percent");
                 }
                 else {
-                    // Call Ajax method 
-                    var gst = GetPercent(gstid);                   
+                    // Call Ajax method
+                    var gst = GetPercent(gstid);
                     var p = $('#Rate').val();
                     p = ClearCulture(p);
                     var r = parseFloat(p) * 100 / parseFloat(gst);
@@ -29,13 +33,13 @@
             }
             else {
                 $('#Rate').val($('#Price').val());
-            }           
+            }
         });
 
         $("#Price").blur(function () {
             var price = $('#Price').val();
             price = ConvertToIndian(price);
-            $('#Rate').val(price);           
+            $('#Rate').val(price);
         });
     });
     function GetPercent(id) {
@@ -47,8 +51,8 @@
             data: "{'ID': '" + id + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (response) {             
-              gst=response;
+            success: function (response) {
+                gst = response;
             },
             failure: function (response) {
                 alert(response);
@@ -58,7 +62,7 @@
     }
 </script>
 <script type="text/javascript">
-    // main picture 
+    // main picture
     function uploadPicture(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -135,7 +139,7 @@
     SetIntegerIndian("StockQty");
     SetIntegerIndian("AlertStockQty");
     SetInputNumericIndian("DeliveryCharge");
-    
+
 
     function FormValidation() {
         RemoveIndianCulture("Like");
@@ -148,6 +152,10 @@
         RemoveIndianCulture("StockQty");
         RemoveIndianCulture("AlertStockQty");
         RemoveIndianCulture("DeliveryCharge");
+
+        // Set the Value 
+        var editor_content = quill.root.innerHTML;       
+        $('#FullDescription').val(editor_content);
     }
 </script>
 
@@ -229,10 +237,12 @@
                     <div class="form-group row">
                         @Html.LabelFor(model => model.FullDescription, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.FullDescription, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.FullDescription, "", new { @class = "text-danger" })
+                            <div id="editor"> </div>
+                            @Html.HiddenFor(model => model.FullDescription)                           
                         </div>
                     </div>
+                    <br />
+                    <br />
 
                     <div class="form-group row">
                         @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -268,13 +278,13 @@
                     <div class="form-group row">
 
                         @Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">                           
+                        <div class="col-md-2">
                             @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                         </div>
-                       
+
                         <div class="col-md-2">
-                            @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
+                            @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
                         </div>
 
@@ -425,9 +435,15 @@
                     </div>
                 }
             </div>
-                </div>
+        </div>
     </div>
 </div>
+
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+</script>
 
 
 

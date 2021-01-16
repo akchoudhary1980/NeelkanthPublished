@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<Neel.Models.ShopTransaction>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string TotalAmount = "";
-    string TotalGST = "";
-    string GrandTotal = "";
-    string TotalDelivery = "";
-}
-    
+    double TotalAmount = 0;
+    double TotalGST = 0;
+    double SubTotal=0;
+    double TotalDelivery = 0;
+    double GrandTotal = 0;
+}  
 <!--for Add Shopping Trans Data-->
 <script type="text/javascript"> 
         function updateShopItems(id) {
@@ -52,7 +52,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Image</th>
-                                                <th>Product Name</th>
+                                                <th width="400px" align="left" class="text-left">Product Name</th>
                                                 <th>Qty</th>
                                                 <th class="text-right">Rate</th>
                                                 <th class="text-right">Amount</th>
@@ -67,23 +67,21 @@
                                                     <td class="pro-list-img" tabindex="0">
                                                         <img src="~/UploadFiles/@item.ItemPicture" class="img-fluid" width="125" alt="tbl">
                                                     </td>
-                                                    <td class="pro-name" style="width:150px">
-                                                        <h6>@item.ItemName</h6>
-                                                        <span>@item.ItemShortDescription</span> <br />
-                                                        <span><b> Delivery Charge : @item.DeliveryCharge </b></span>
+                                                    <td>
+                                                        @item.ItemName
+                                                        <br>Delivery Charge : @item.DeliveryCharge
                                                     </td>
 
-                                                    <td style="width:60px">
+                                                    <td style="width:30px">
                                                         <input type="number" id="text@(item.SerNo)" class="form-control" style="min-width:60px" value="@item.Quantity">
-                                                        
+
                                                     </td>
                                                     <td class="text-right">
                                                         @item.Rate
                                                     </td>
                                                     <td class="text-right">@item.Amount</td>
 
-                                                    <td class="action-icon text-center">
-                                                        @*<a href="@Url.Action("RefSTransData", "Home",new { id = item.SerNo, qty = 2 })" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Update"><i class="icofont icofont-refresh"></i></a>*@
+                                                    <td class="action-icon text-center">                                                       
                                                         <button type="button" id="@item.SerNo" onclick="updateShopItems(this.id)" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Update"><i class="icofont icofont-refresh"></i></button>
                                                     </td>
                                                     <td class="action-icon text-center">
@@ -91,35 +89,55 @@
                                                     </td>
                                                 </tr>
 
-                                                TotalAmount = item.TotalAmount;
-                                                TotalGST = item.GSTAmount;
-                                                TotalDelivery = item.DeliveryTotal;
-                                                GrandTotal = item.GrandTotal;
+                                                TotalAmount = Neel.TextLib.RemoveIndianCulture(item.TotalAmount);
+                                                TotalGST = Neel.TextLib.RemoveIndianCulture(item.GSTAmount);
+                                                SubTotal =TotalAmount + SubTotal;
+                                                TotalDelivery = Neel.TextLib.RemoveIndianCulture(item.DeliveryTotal);
+                                                GrandTotal = Neel.TextLib.RemoveIndianCulture(item.GrandTotal);
                                             }
                                             <tr class="even">
                                                 <td colspan="4" class="text-right">Total</td>
-                                                <td class="text-right">@TotalAmount</td>
+                                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(TotalAmount)</b></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr class="even">
                                                 <td colspan="4" class="text-right">GST / IGST</td>
-                                                <td class="text-right">@TotalGST</td>
+                                                <td class="text-right">@Neel.TextLib.IndianRuppes(TotalGST)</td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr class="even">
                                                 <td colspan="4" class="text-right">Delivery</td>
-                                                <td class="text-right">@TotalDelivery</td>
+                                                <td class="text-right">@Neel.TextLib.IndianRuppes(TotalDelivery)</td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr class="even">
+                                                <td colspan="4" class="text-right"><b>Sub Total</b></td>
+                                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(GrandTotal)</b></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+
+                                            @if(SubTotal>=1000)
+                                            {
+                                            <tr class="odd">
+                                                <td colspan="4" class="text-right"><b>Free Delivery</b></td>
+                                                <td class="text-right"><b>(-) @TotalDelivery</b></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                                GrandTotal = GrandTotal - TotalDelivery;
+                                            }                                           
+
+                                            <tr class="odd">
                                                 <td colspan="4" class="text-right"><b>Grand Total</b></td>
                                                 <td class="text-right"><b>@GrandTotal</b></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

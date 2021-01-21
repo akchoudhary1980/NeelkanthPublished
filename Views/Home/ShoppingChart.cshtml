@@ -81,7 +81,7 @@
                                                     </td>
                                                     <td class="text-right">@item.Amount</td>
 
-                                                    <td class="action-icon text-center">                                                       
+                                                    <td class="action-icon text-center">
                                                         <button type="button" id="@item.SerNo" onclick="updateShopItems(this.id)" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Update"><i class="icofont icofont-refresh"></i></button>
                                                     </td>
                                                     <td class="action-icon text-center">
@@ -91,7 +91,7 @@
 
                                                 TotalAmount = Neel.TextLib.RemoveIndianCulture(item.TotalAmount);
                                                 TotalGST = Neel.TextLib.RemoveIndianCulture(item.GSTAmount);
-                                                SubTotal =TotalAmount + SubTotal;
+                                                SubTotal = TotalAmount + TotalGST;
                                                 TotalDelivery = Neel.TextLib.RemoveIndianCulture(item.DeliveryTotal);
                                                 GrandTotal = Neel.TextLib.RemoveIndianCulture(item.GrandTotal);
                                             }
@@ -107,33 +107,35 @@
                                                 <td></td>
                                                 <td></td>
                                             </tr>
-                                            <tr class="even">
-                                                <td colspan="4" class="text-right">Delivery</td>
-                                                <td class="text-right">@Neel.TextLib.IndianRuppes(TotalDelivery)</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr class="even">
+                                             <tr class="even">
                                                 <td colspan="4" class="text-right"><b>Sub Total</b></td>
                                                 <td class="text-right"><b>@Neel.TextLib.IndianRuppes(GrandTotal)</b></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
 
-                                            @if(SubTotal>=1000)
+                                            @if (SubTotal < 1000)
                                             {
-                                            <tr class="odd">
-                                                <td colspan="4" class="text-right"><b>Free Delivery</b></td>
-                                                <td class="text-right"><b>(-) @TotalDelivery</b></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                                GrandTotal = GrandTotal - TotalDelivery;
-                                            }                                           
-
+                                                <tr class="green-colors">
+                                                    <td colspan="4" class="text-right"><b>Delivery Charge </b></td>
+                                                    <td class="text-right"><b>@Neel.TextLib.IndianRuppes(99)</b></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>     
+                                                GrandTotal = GrandTotal + 99;
+                                            }
+                                            else
+                                            {
+                                                <tr class="green-colors">
+                                                    <td colspan="4" class="text-right"><b>Free Delivery</b></td>
+                                                    <td class="text-right"><b>(-) @Neel.TextLib.IndianRuppes(TotalDelivery)</b></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>                                               
+                                            }
                                             <tr class="odd">
                                                 <td colspan="4" class="text-right"><b>Grand Total</b></td>
-                                                <td class="text-right"><b>@GrandTotal</b></td>
+                                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(GrandTotal)</b></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>

@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Package";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .money{
+     font-size:36px;
+     font-weight:900;
+     color:forestgreen;
+     text-align:right;
+    }
+</style>
+
+<div class="row mt-lg-5">
+    <div class="col-md-12">        
+        <div class="card">                
+            <div class="card-body">
+                <h3 class="card-title">Membership Package</h3>
+                <p class="card-text mt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>               
+            </div>
+        </div>      
+    </div>         
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card p-20">
+            <img src="~/UploadFiles/Common/Pack1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Silver Pack</h5>
+                <div class="money">
+                    ₹ 500
+                </div>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="@Url.Action("GetPackage", "Home",new { pack = "Silver" })" class="btn btn-primary float-right">Get Membership</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-20">           
+            <img src="~/UploadFiles/Common/Pack2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Gold Pack</h5>
+                <div class="money">
+                    ₹ 1,000
+                </div>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="@Url.Action("GetPackage", "Home",new { pack = "Gold" })" class="btn btn-primary float-right">Get Membership</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-20">
+            <img src="~/UploadFiles/Common/Pack3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Diamond Pack</h5>
+                <div class="money">
+                    ₹ 1,500
+                </div>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="@Url.Action("GetPackage", "Home",new { pack = "Diamond" })" class="btn btn-primary float-right">Get Membership</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

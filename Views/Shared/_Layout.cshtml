@@ -174,7 +174,7 @@
             <!-- Menu Top Strip Menu start -->
             <nav class="navbar header-navbar pcoded-header" style="background-color:seagreen; min-height:75px;">
                 <div class="navbar-wrapper">
-                    <div class="navbar-logo" style="background-color:seagreen;min-height:75px;">
+                    <div class="navbar-logo" style="background-color:seagreen;color:white;min-height:75px;">
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu"></i>
                         </a>
@@ -212,12 +212,7 @@
                                     <i class="feather icon-shopping-cart"></i>
                                     <span class="badge bg-c-pink">@Session["ItemCount"]</span>
                                 </a>
-                                @*<div class="dropdown-primary dropdown">
-                                        <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="feather icon-shopping-cart"></i>
-                                            <span class="badge bg-c-pink">@Session["ItemCount"]</span>
-                                        </div>
-                                    </div>*@
+                                
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="@Url.Action("Index", "Login")" style="font-size:16px;">Login</a>
@@ -232,14 +227,10 @@
             <!-- Menu header end -->
             <!-- Menu Lower Menu Start -->
             <div class="pcoded-main-container mybg">                
-                <nav class="pcoded-navbar" style="background-color:ghostwhite; min-height:80px;">
-                    <div class="row" style="background-color:greenyellow;">
+                <nav class="pcoded-navbar" style="background-color:whitesmoke; min-height:80px;">
+                    <div class="row" style="background-color:orangered;color:white">
                         <marquee><span class="icofont icofont-alarm"> </span> @Neel.Basic.RunningMessage</marquee>
                     </div>
-
-                    @*<div class="row" style="background-color:greenyellow;">
-                        <marquee><span class="icofont icofont-alarm"> </span> Neelkanth Pharmacy are going to launch 5 new products at the end of February 2021.</marquee>
-                    </div>*@
                     <div class="pcoded-inner-navbar">
                         <ul class="pcoded-item pcoded-right-item">
                             <li>
@@ -257,9 +248,9 @@
                             </li>
 
                             <li>
-                                <a href="@Url.Action("Registration", "Home")">
+                                <a href="@Url.Action("Package", "Home")">
                                     <span class="pcoded-micon"><i class="feather icon-layout"></i></span>
-                                    <span class="pcoded-mtext">Registration</span>
+                                    <span class="pcoded-mtext">Membership</span>
                                 </a>
                             </li>
                             <li>

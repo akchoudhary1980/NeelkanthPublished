@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Package";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,58 +11,54 @@
      text-align:right;
     }
 </style>
-
-<div class="row mt-lg-5">
-    <div class="col-md-12">        
-        <div class="card">                
-            <div class="card-body">
-                <h3 class="card-title">Membership Package</h3>
-                <p class="card-text mt-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>               
-            </div>
-        </div>      
-    </div>         
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="card p-20">
-            <img src="~/UploadFiles/Common/Pack1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Silver Pack</h5>
-                <div class="money">
-                    ₹ 500
-                </div>
-                <p class="card-text">Become Neelkanth's silver pack member and get 10% off on all our products upto 3 months.</p>
-                <a href="@Url.Action("GetPackage", "Home",new { pack = "Silver" })" class="btn btn-primary float-right">Get Membership</a>
-            </div>
+<div class="container">
+    <div class="row mt-5 mb-5 animated bounceInUp">
+        <div class="col-md-12 text-center green-underline">
+            <h4 class="card-title">Membership Package</h4>
+            <p class="card-text mt-2">Get membership of Neelkanth and get exciting offer according to membership package.</p>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card p-20">           
-            <img src="~/UploadFiles/Common/Pack2.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Gold Pack</h5>
-                <div class="money">
-                    ₹ 1,000
+    <div class="row mt-5 mb-5 animated bounceInDown">
+        <div class="col-md-4">
+            <div class="card p-20 rounded-0">
+                <img src="~/UploadFiles/Common/Pack1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Silver Pack</h5>
+                    <div class="money">
+                        ₹ 500
+                    </div>
+                    <p class="card-text">Become Neelkanth's silver pack member and get 10% off on all our products upto 3 months.</p>
+                    <a href="@Url.Action("GetPackage", "Home",new { pack = "Silver" })" class="more-product no-link-white float-end">Get Membership</a>
                 </div>
-                <p class="card-text">Become Neelkanth Gold Pack member and get 15% off  on all our products up to 6 months.</p>
-                <a href="@Url.Action("GetPackage", "Home",new { pack = "Gold" })" class="btn btn-primary float-right">Get Membership</a>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card p-20">
-            <img src="~/UploadFiles/Common/Pack3.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Diamond Pack</h5>
-                <div class="money">
-                    ₹ 1,500
+        <div class="col-md-4">
+            <div class="card p-20 rounded-0">
+                <img src="~/UploadFiles/Common/Pack2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Gold Pack</h5>
+                    <div class="money">
+                        ₹ 1,000
+                    </div>
+                    <p class="card-text">Become Neelkanth Gold Pack member and get 15% off  on all our products up to 6 months.</p>
+                    <a href="@Url.Action("GetPackage", "Home",new { pack = "Gold" })" class="more-product no-link-white float-end">Get Membership</a>
                 </div>
-                <p class="card-text">Become become Neelkanth Diamond pack member and get 20% off on all our products up to one year.</p>
-                <a href="@Url.Action("GetPackage", "Home",new { pack = "Diamond" })" class="btn btn-primary float-right">Get Membership</a>
             </div>
         </div>
-    </div>
+        <div class="col-md-4">
+            <div class="card p-20 rounded-0">
+                <img src="~/UploadFiles/Common/Pack3.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Diamond Pack</h5>
+                    <div class="money">
+                        ₹ 1,500
+                    </div>
+                    <p class="card-text">Become Neelkanth Diamond pack member and get 20% off on all our products up to one year.</p>
+                    <a href="@Url.Action("GetPackage", "Home",new { pack = "Diamond" })" class="more-product no-link-white float-end">Get Membership</a>
+                </div>
+            </div>
+        </div>
 
+    </div>
 </div>
 

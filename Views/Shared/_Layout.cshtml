@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Neelkanth Pharmacy</title>
@@ -8,409 +9,254 @@
     <meta name="description" content="Right combination of natural, scientific, financial, managerial and operational skills to withstand the winds of change, A change towards using natural plant based products and put A Big stop towards chemical products">
     <meta name="keywords" content="Plant based Nutrition combining Modern Science &amp; Ancient Ayurveda. From Meal Replacements, Collagen to Vegan Protein - we bring you Raw, Natural and Clean Nutrition">
     <meta name="author" content="Anil Choudhary">
-    <!-- Favicon icon -->
-    <link rel="icon" href="~/adminty-master/files/assets/images/favicon.ico" type="image/x-icon">
+    <!-- Favicon icon -->    
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-
-
-
     <!-- Required Fremwork -->
-   <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/bootstrap/css/bootstrap.min.css">
-    <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/themify-icons/themify-icons.css">
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/icofont/css/icofont.css">
-    <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/icon/feather/css/feather.css">
-    <!-- Syntax highlighter Prism css -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/pages/prism/prism.css">
-
-
-    <!-- Style.css -->
-    <link href="~/Content/style1.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/assets/css/pcoded-horizontal.min.css">
-    <!-- star theme css -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-1to10.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-horizontal.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-movie.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-pill.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-reversed.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/bars-square.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/jquery-bar-rating/css/css-stars.css">
-    <!-- slick css -->
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/slick-carousel/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="~/adminty-master/files/bower_components/slick-carousel/css/slick-theme.css">
-
-
-
-    <link href="~/Content/Layoutcss.css" rel="stylesheet" />
-    <link href="~/Content/css-collection.css" rel="stylesheet" />
-
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>   
+    <link href="~/css/neelkanth.css" rel="stylesheet" />
+    <link href="~/css/icofont.min.css" rel="stylesheet" />
+    <link href="~/css/animate.css" rel="stylesheet" />
     
-
-    <style>
-        .card {
-            border-radius: 0px;
-        }
-    </style>
-
-    <style type="text/css">
-        .sticky-container {
-            padding: 0px;
-            margin: 0px;
-            position: fixed;
-            right: -193px;
-            top: 50%;
-            width: 250px;
-            z-index: 1100;
-        }
-
-        .sticky li {
-            list-style-type: none;
-            background-color: darkgreen;
-            height: 55px;
-            padding-left: 3px;
-            padding-top: 3px;
-            margin: 0px 0px 1px 0px;
-            -webkit-transition: all 0.25s ease-in-out;
-            -moz-transition: all 0.25s ease-in-out;
-            -o-transition: all 0.25s ease-in-out;
-            transition: all 0.25s ease-in-out;
-            cursor: pointer;
-        }
-
-            .sticky li:hover {
-                margin-left: -150px;
-            }
-
-            .sticky li a {
-                padding-top: 5px;
-                margin: 0px;
-                text-decoration: none;
-                color: white;
-            }
-    </style>
-
-    <!--for Search Items-->
     <script type="text/javascript">
-        function seachbox() {
-            //alert('come');
-            var search = $('#txtsearch').val();
-            if (search != "") {
-                //
-                    // call Ajax Method
-                    $.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("SeachProduct","Home")',
-                        dataType: 'json',
-                        data: {SearchValue:search},
-                        success: function (data) {
-                        window.location.href = "@Url.Action("Shopping", "Home")";
-                        //DisplayData(data);
-                        }
-                    });
-                ///
-            }
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 1000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";       
         }
     </script>
 </head>
-
-<!-- Menu horizontal fixed layout -->
-<body>
-
-    <!-- End for Sweet Alert-->
-    <script type="text/javascript">
-        // define here call here
-        function ShowMessage(message) {
-            Swal.fire({
-                title: "Warrning !",
-                text: message,
-                type: "success",
-                confirmButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-            });
-        }
-    </script>
-    @if (ViewBag.SweetMessage != null)
-    {
-        // call here
-        <script type="text/javascript">
-            @Html.Raw(ViewBag.SweetMessage)
-        </script>
-    }
+<body onload="myFunction()" style="margin:0;">
 
 
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="ball-scale">
-            <div class='contain'>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
-    
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-container">
-            <!-- Menu Top Strip Menu start -->
-            <nav class="navbar header-navbar pcoded-header" style="background-color:seagreen; min-height:75px;">
-                <div class="navbar-wrapper">
-                    <div class="navbar-logo" style="background-color:seagreen;color:white;min-height:75px;">
-                        <a class="mobile-menu" id="mobile-collapse" href="#!">
-                            <i class="feather icon-menu"></i>
-                        </a>
-                        <a href="@Url.Action("Index", "Home")">
-                            <img src="~/UploadFiles/piggies.png" class="img-fluid" alt="Theme-Logo" />
-                        </a>
-                        <a class="mobile-options">
-                            <i class="feather icon-more-horizontal"></i>
-                        </a>
+    <!-- For Loader -->
+    <div id="loader"></div>
+    <!-- Header Section -->
+    <header>
+        <section id="topbar">
+            <marquee><span class="icofont icofont-alarm"> </span> @Neel.Basic.RunningMessage</marquee>
+        </section>
+        <section id="searchbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="~/UploadFiles/Common/Logo.png" class="img-fluid" />
+                        <p class="slow-gun">Healthy Product By Nature</p>
                     </div>
-                    <div class="navbar-container container-fluid">
-                        <ul class="nav-left">
-                            <li class="header-search">
-                                <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
-                                        <input id="txtsearch" type="text" class="form-control">
-                                        <span class="input-group-addon search-btn">
-                                            <i class="feather icon-search" onclick="seachbox()"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" onclick="javascript:toggleFullScreen()">
-                                    <i class="feather icon-maximize full-screen"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav-right">
-                            <li class="header-notification">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-10 col-10 pr-zero">
+                                <input id="tbsearch" type="text" class="search-box" />
+                            </div>
+                            <div class="col-md-2 col-2 pl-zero">
+                                <button class="search-button" type="button"><i class="icofont-ui-search icofont-2x"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-12 login-text">
+                                My Cart <i style="color:#BCD000" class="icofont-cart"> </i>
+                                        <a href="@Url.Action("ShoppingChart", "Home")" style="text-decoration:none">  <span style="color:white; background-color:red; position:relative;top:-10px;" class="badge badge-notify">@Session["ItemCount"]</span> </a>
 
-                                <a href="@Url.Action("ShoppingChart", "Home")">
-                                    <span> My Cart </span>
-                                    <i class="feather icon-shopping-cart"></i>
-                                    <span class="badge bg-c-pink">@Session["ItemCount"]</span>
-                                </a>
-                                
-                            </li>
-                            <li class="user-profile header-notification">
-                                <a href="@Url.Action("Index", "Login")" style="font-size:16px;">Login</a>
-                            </li>
-                            <li class="user-profile header-notification">
-                                <a href="@Url.Action("SignIn", "Login")" style="font-size:16px;">Sign In</a>
-                            </li>
-                        </ul>
+                                 <a href="@Url.Action("Index", "Login")" style="text-decoration:none" >Login</a> <i style="color:#BCD000" class="icofont-user"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 toll-free">
+                                1800235489
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </nav>
-            <!-- Menu header end -->
-            <!-- Menu Lower Menu Start -->
-            <div class="pcoded-main-container mybg">                
-                <nav class="pcoded-navbar" style="background-color:whitesmoke; min-height:80px;">
-                    <div class="row" style="background-color:orangered;color:white">
-                        <marquee><span class="icofont icofont-alarm"> </span> @Neel.Basic.RunningMessage</marquee>
-                    </div>
-                    <div class="pcoded-inner-navbar">
-                        <ul class="pcoded-item pcoded-right-item">
-                            <li>
-                                <a href="@Url.Action("Index", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                    <span class="pcoded-mtext">Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Shopping", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-repeat"></i></span>
-                                    <span class="pcoded-mtext">Product Shopping</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
+            </div>
+        </section>
+        <section id="menubar">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        @*<a class="navbar-brand" href="#">Navbar</a>*@
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse mainnav mt-2" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-4 mb-sm-2 mb-lg-0">
+                                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                <li><a href="@Url.Action("Shopping", "Home")">Product Shopping</a></li>
+                                <li><a href="@Url.Action("Package", "Home")">Membership</a> </li>
+                                <li><a href="@Url.Action("Dealers", "Home")">Dealer Networks</a></li>
+                                <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
+                                @*<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Dropdown
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </li>*@
+                            </ul>
 
-                            <li>
-                                <a href="@Url.Action("Package", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-layout"></i></span>
-                                    <span class="pcoded-mtext">Membership</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Dealers", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
-                                    <span class="pcoded-mtext">Dealers</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="@Url.Action("About", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-user"></i></span>
-                                    <span class="pcoded-mtext">About Us</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="@Url.Action("Contact", "Home")">
-                                    <span class="pcoded-micon"><i class="feather icon-phone"></i></span>
-                                    <span class="pcoded-mtext">Contact</span>
-                                </a>
-                            </li>
-                        </ul>
+                        </div>
                     </div>
                 </nav>
+            </div>
+        </section>
+    </header>
+    <!-- Render Body Start -->
+    <section>
+        @RenderBody()        
+    </section>
+  
+    <!-- Render Body End -->
+    <!-- Footer Section -->
+    <footer class="animated animate-bounce">
+        <section class="footer-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mt-4 mb-4">
+                        <div class="col-md-12 green-underline">
+                            <h5>HEAD OFFICE</h5>
+                            <p>
+                                G. Neelkanth Pharmacy India Pvt. Ltd. <br />
+                                1229, Ukhari Road, Jabalpur(MP)-482002
+                            </p>
+                        </div>
+                        <div class="col-md-12 green-underline">
+                            <h5>FACTORY</h5>
+                            <p>
+                                G. Neelkanth Pharmacy India Pvt. Ltd. <br />
+                                13/41, Industrial Area, Richhai, Jabalpur(MP)
+                            </p>
+                        </div>
+                        <div class="col-md-12 green-underline">
+                            <h5>CONTACT</h5>
+                            <p>
+                                Mobile: 7401307307 <br />
+                                Email: neelkanthpharmacy@gmail.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row mt-4 mb-4">
+                            <div class="col-md-12 green-underline">
+                                <h5>WRIGHT US</h5>
+                            </div>
+                            <div>
 
 
-                <!-- Sidebar chat start -->
-                <!-- Sidebar inner chat end-->
-                <div class="pcoded-wrapper">
-                    <div class="pcoded-content ">
-                        <div class="pcoded-inner-content">
-                            <!-- Main-body start -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <div class="page-body">
+                                <div class="form-group row mb-2">
+                                    <div class="col-sm-12">
+                                        <input id="name" type="text" class="form-control rounded-0" placeholder="Your Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-2">
+                                    <div class="col-sm-12">
+                                        <textarea id="address" placeholder="Your Address" rows="1" class="form-control rounded-0"></textarea>
+                                    </div>
+                                </div>
 
+                                <div class="form-group row mb-2">
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="mobile" type="text" class="form-control rounded-0" placeholder="Mobile">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="email" type="text" class="form-control rounded-0" placeholder="Email">
+                                    </div>
+                                </div>
 
-                                        @RenderBody()
+                                <div class="form-group row mb-2">
+                                    <div class="col-sm-12">
+                                        <textarea id="address" placeholder="Your Query" rows="1" class="form-control rounded-0"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 text-end">
+                                        <input type="submit" value="Submit Now" class="more-product rounded-0" />
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="sticky-container">
-                                <ul class="sticky">
-                                    <li>
-                                        <a href="https://api.whatsapp.com/send?phone=917401307307&text=Start%20Whatsapp%20Chating" target="_blank" style="font-size:x-large;"> <i class="icofont icofont-social-whatsapp icofont-2x" style="color:white"></i> 7401307307</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            @*<div id="styleSelector">
-                    </div>*@
                         </div>
                     </div>
                 </div>
-                <!-- ======= Footer ======= -->
-                <footer id="footer">
-                    <div class="footer-top">
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-6 footer-info">
-                                    <h4>ABOUT US</h4>
-                                    <p>
-                                        We belive on long term relationship with our customers, so try to provide best services and take care of our customers, listen there problem and short out it. Our vision for the company is to make it grow and maximise our market share by targeting more than one segment of the market
-                                    </p>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6 footer-links">
-                                    <h4>Useful Links</h4>
-                                    <ul>
-                                        <li><a href="@Url.Action("ShippingDeliveryPolicy", "Home")">Shipping & Delivery Policy</a></li>
-                                        <li><a href="@Url.Action("DisclaimerPolicy", "Home")">Disclaimer Policy</a></li>
-                                        <li><a href="@Url.Action("PrivacyPolicy", "Home")">Privacy Policy</a></li>
-                                        <li><a href="@Url.Action("RefundPolicy", "Home")">Cancellation & Refund Policy</a></li>
-                                        <li><a href="#">Health Tips</a></li>
-                                        <li><a href="@Url.Action("HealthCard", "Home")">Health Cards</a></li>
-                                        <li><a href="#">Investors</a></li>
-
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6 footer-contact">
-                                    <h4>Contact Us</h4>
-                                    <p>
-                                        <b>G. Neelkanth Pharmacy India Pvt. Ltd.</b>
-                                        <br>Head Office : 1229, Ukhari Road, Jabalpur(MP)-482002
-                                        Factory : 13/41, Industrial Area, Richhai, Jabalpur(MP)
-                                        Mobile: 7401307307, Email: neelkanthpharmacy@gmail.com
-                                    </p>
-                                    <div class="social-links">
-                                        <a href="https://twitter.com/HealthNeelkanth" class="twitter"><i class="icofont icofont-social-twitter"></i></a>
-                                        <a href="https://www.youtube.com/channel/UCEemVzSplhnOwhWaakfH-Xw" class="linkedin"><i class="icofont icofont-social-youtube"></i></a>
-                                        <a href="https://www.facebook.com/114386233813349/posts/116999023552070/?sfnsn=wiwspmo" class="facebook"><i class="icofont icofont-social-facebook"></i></a>
-                                        <a href="#" class="instagram"><i class="icofont icofont-social-instagram"></i></a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="copyright">
-                            Copyright &copy; 2016, G. Neelkanth Pharmacy India Pvt. Ltd. &nbsp;All Rights Reserved.
-                        </div>
-                        <div class="credits">
-                            <!-- All the links in the footer should remain intact. -->
-                            <!-- You can delete the links only if you purchased the pro version. -->
-                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
-                            Designed by <a href="http://jabalpuryellowpages.co.in/index">Goodwill Enterprises</a>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End Footer -->
             </div>
-        </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <ul class="footer-list">
+                            <li> <a href="@Url.Action("ShippingDeliveryPolicy", "Home")" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Shipping & Delivery Policy </a></li>
+                            <li> <a href="@Url.Action("DisclaimerPolicy", "Home")" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Disclaimer Policy </a></li>
+                            <li> <a href="@Url.Action("PrivacyPolicy", "Home")" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Privacy Policy </a></li>
+                            <li> <a href="@Url.Action("RefundPolicy", "Home")" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Cancellation & Refund Policy </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+
+                        <ul class="footer-list">
+                            <li> <a href="#" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Health Tips </a></li>
+                            <li> <a href="@Url.Action("HealthCard", "Home")" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Health Cards </a></li>
+                            <li> <a href="#" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> Investors </a></li>
+                            <li> <a href="#" class="footer-list-item"><i class="icofont-circled-right orange-bg"></i> News and Events </a></li>
+                        </ul>
+
+                       
+                    </div>
+                    <div class="col-md-4 mt-2 mb-3 social-icon-box">
+                        <a class="no-link-white" href="https://www.facebook.com/114386233813349/posts/116999023552070/?sfnsn=wiwspmo">
+                            <div class="text-center social-icon facebook-bg">
+                                <i class="icofont-facebook icofont-3x"></i>
+                            </div>
+                        </a>
+                        <a class="no-link-white" href="https://twitter.com/HealthNeelkanth">
+                            <div class="text-center social-icon twitter-bg">
+                                <i class="icofont-twitter icofont-3x"></i>
+                            </div>
+                        </a>
+                        <a class="no-link-white" href="https://www.youtube.com/channel/UCEemVzSplhnOwhWaakfH-Xw">
+                            <div class="text-center social-icon youtube-bg">
+                                <i class="icofont-youtube icofont-3x"></i>
+                            </div>
+                        </a>
+                        <a class="no-link-white" href="#">
+                            <div class="text-center social-icon instagram-bg">
+                                <i class="icofont-instagram icofont-3x"></i>
+                            </div>
+                        </a>
+
+</div>
+                </div>
+            </div>
+        </section>
+        <section class="footer-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        Copyright © 2016, G. Neelkanth Pharmacy India Pvt. Ltd.  All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+
+    <!-- For Sticky Social Icon -->
+    <div class="sticky-icon-bar">
+        <a href="https://api.whatsapp.com/send?phone=917401307307&text=Start%20Whatsapp%20Chating" target="_blank" class="whatsup-bg"><i class="icofont-whatsapp"></i></a>
+        @*<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>*@
     </div>
-
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery/js/jquery.min.js"></script>
-    @*<script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>*@
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/popper.js/js/popper.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
-
-    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/form-validation.js"></script>
-    <script src="~/Scripts/AjaxModules.js"></script>
-
-    <!-- Start for Sweet Alert-->
-    <link href="~/adminty-master/files/bower_components/sweets/animate.css" rel="stylesheet" />
-    <link href="~/adminty-master/files/bower_components/sweets/sweetalert2.min.css" rel="stylesheet" />
-    <script src="~/adminty-master/files/bower_components/sweets/polyfill.min.js"></script>
-    <script src="~/adminty-master/files/bower_components/sweets/sweet-alerts.js"></script>
-    <script src="~/adminty-master/files/bower_components/sweets/sweetalert2.all.min.js"></script>
-
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
-    <!-- modernizr js -->
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/modernizr/js/modernizr.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/modernizr/js/css-scrollbars.js"></script>
-
-    <!-- Syntax highlighter prism js -->
-    <script type="text/javascript" src="~/adminty-master/files/assets/pages/prism/custom-prism.js"></script>
-    <!-- i18next.min.js -->
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next/js/i18next.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
-    <!-- Custom js -->
-    <script src="~/adminty-master/files/assets/js/pcoded.min.js"></script>
-    <script src="~/adminty-master/files/assets/js/menu/menu-hori-fixed.js"></script>
-    <script src="~/adminty-master/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/assets/js/script.js"></script>
-
-
-
-    <!-- barrating js -->
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/jquery-bar-rating/js/jquery.barrating.min.js"></script>
-    <script type="text/javascript" src="~/adminty-master/files/assets/pages/rating/rating.js"></script>
-    <!-- slick js -->
-    <script type="text/javascript" src="~/adminty-master/files/bower_components/slick-carousel/js/slick.min.js"></script>
-    <!-- product detail js -->
-    <script type="text/javascript" src="~/adminty-master/files/assets/pages/product-detail/product-detail.js"></script>
-
 </body>
 </html>

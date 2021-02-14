@@ -4,60 +4,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card layout">
-            <div class="card-block">
-                <div class="row" style="margin-top:30px;">                   
-                    <div class="col-md-12">
-                        <div class="col-sm-12 bottombarheading">
-                            Our Dealers
-                        </div>
-
-                        @*@foreach (var item in Model)
+<div class="container">
+    <div class="row mt-4 animated slideInDown">
+        <div class="col-md-12 text-center green-underline">
+            <h4>Dealer Networks</h4>
+        </div>
+    </div>
+    <div class="row mt-3 mb-5 animated slideInRight">
+        @foreach (var item in Model)
         {
-            <tr>
-                <td>@{count++;} @count</td>
-
-                <td> @Html.DisplayFor(modelItem => item.BrandName)</td>
-                <td> @Html.DisplayFor(modelItem => item.Remark)</td>
-                <td>
-                    <a href="@Url.Action("Edit", "Brand",new { id = item.BrandID })" class="btn btn-success btn-mini btn-outline-primary"><i class='icofont icofont-ui-edit'></i></a>
-                </td>
-                <td>
-                    <a href="@Url.Action("Delete", "Brand",new { id = item.BrandID })" class="btn btn-danger btn-mini btn-outline-primary"><i class='icofont icofont-ui-close '></i></a>
-                </td>
-            </tr>
-        }*@
-
-                    <div class="row simple-cards users-card">
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-md-12 col-xl-4">
-                                <div class="card user-card">
-                                    <div class="card-header-img">
-                                        <img class="img-fluid img-radius" src="~/UploadFiles/@item.Picture" width="325" alt="card-img">
-                                        <h3>@Html.DisplayFor(modelItem => item.DealerName)</h3>
-                                        <h5>@Html.DisplayFor(modelItem => item.Email)</h5>
-                                        <h4>@Html.DisplayFor(modelItem => item.ContactPerson)</h4>
-                                        <h6>@Html.DisplayFor(modelItem => item.Mobile)</h6>
-                                    </div>
-
-                                    <p>Add: @Html.DisplayFor(modelItem => item.Address), <br />City: @Html.DisplayFor(modelItem => item.City), <br />State: @Html.DisplayFor(modelItem => item.State) </p>
-                                   
-                                    <div>
-                                        <a class="btn btn-primary waves-effect waves-light m-r-15"><i class="icofont icofont-phone m-r-5"></i>Call</a>
-                                        <a class="btn btn-success waves-effect waves-light"><i class="icofont icofont-email m-r-5"></i>Email</a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
+            <div class="col-md-4 col-12 mb-3">
+                <div class="card p-3 rounded-0" style="min-height:550px">
+                    <div class="card-header-img">
+                        <img class="img-fluid img-radius" src="~/UploadFiles/@item.Picture" height="200" alt="card-img">
+                        <h5 class="text-uppercase text-end text-primary">@Html.DisplayFor(modelItem => item.DealerName)</h5>
+                        <h4 class="text-success text-capitalize text-end">@Html.DisplayFor(modelItem => item.ContactPerson)</h4>
+                        <h5 class="text-end"><i class="icofont-mobile-phone"></i> @Html.DisplayFor(modelItem => item.Mobile)</h5>
+                        <h6 class="text-end"><i class="icofont-envelope"></i>@Html.DisplayFor(modelItem => item.Email)</h6>
                     </div>
+
+                    <p class="text-capitalize">Add: @Html.DisplayFor(modelItem => item.Address), <br />City: @Html.DisplayFor(modelItem => item.City), <br />State: @Html.DisplayFor(modelItem => item.State) </p>
+
+                    <div class="text-end">
+                        <a class="btn btn-primary rounded-0 "><i class="icofont icofont-phone "></i>Call</a>
+                        <a class="btn btn-success rounded-0"><i class="icofont icofont-email"></i>Email</a>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>
+
+
+
 

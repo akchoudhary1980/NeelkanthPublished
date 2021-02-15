@@ -1,5 +1,10 @@
 ﻿body {
 }
+:root {
+    --orange: #FC7C0E;
+    --blue: #2BBCFB;
+    --green: #BCD000;
+}
 
 .no-link {
     text-decoration: none;    
@@ -154,7 +159,8 @@
 }
 
 #topbar {
-    background-color: #FC7C0E;
+    /*background-color:  #FC7C0E;*/
+    background-color: var(--orange);
     height: 35px;
     line-height: 35px;
     vertical-align: middle;

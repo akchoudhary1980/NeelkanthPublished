@@ -1,171 +1,165 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style type="text/css">
-    @@font-face {
-        font-family: 'fontawesome-webfont';
-        src: url('../../adminty-master/files/assets/fonts/fontawesome-webfont.ttf') format('truetype');
+    .accordion {
+        background-color: #2BBCFB;
+        border: none;
+        color: #444;
+        cursor: pointer;
+        padding: 4px 10Px 4px 10px;
+        width: 100%;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
     }
 
-    .accordion .card-header:after {
-    font-family: 'fontawesome-webfont';  
-    content: "\f068";
-    float: right; 
-}
-.accordion .card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\f067"; 
-}
-.question
-{
-    background-color:#C6E7CE!important;
-    padding-top:8px!important;
-    padding-bottom:8px!important;
-    margin-bottom:1px;
-}
-.question:hover{
-    background-color:#84CF96!important;
-}
+        .active, .accordion:hover {
+            background-color: #BCD000;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        border: 1px solid #BCD000;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
 </style>
-    <section>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card layout" style="border-radius: 0px;">
-                    <div class="card-block">
-                        <div class="leftbarheading">Shipping & Delivery Policy</div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4>General Rules</h4>
-                                <p>We made free shipping on orders of Rs.1001/- or more. For COD method customer will be charged additional Rs.30/- as COD charges which will be mentioned in the invoice. Free COD option is available on order of Rs.1000/- or more.</p>
-                                <p>We promise to provide you with best-in-class shopping experience at every step of the way. We assure you that all due precautions are taken so that your package reaches you intact. An estimated delivery time period is displayed on the order summary page. On placing your order, you will receive an email/confirmation call containing a summary of the order and also the estimated delivery time to your location.</p>
-                                <p>Sometimes, delivery may take longer due to bad weather, flight delays, political disruptions and other unforeseen circumstances. In such cases, we will proactively reach out to you. Please check your emails and SMS regularly for such updates.</p>
-                                <p>The delivery time period varies from product to product due to stock availability at your order dispatch center. We are not responsible for unsatisfactory or delayed performance of services or damages or delays as a result of products which are out of stock, unavailable or back ordered.</p>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top:30px;">
-                            <div class="col-md-3" style="margin-bottom:20px;">
-                                <img src="~/UploadFiles/contactus.jpg" class="img-fluid" />
-                            </div>
-                            <div class="col-md-9">
-                                <h5>General Question and Answer </h5>
-                                <hr />
-                                <div id="accordion" class="accordion">
-                                    <div class="card mb-0">
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id1">
-                                            <a class="card-title">
-                                                Q. What are the delivery charges?
-                                            </a>
-                                        </div>
-                                        <div id="id1" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. Delivery charges may apply on certain products/services and would be communicated at the time of order processing.
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id2">
-                                            <a class="card-title">
-                                                Q. What are the estimated delivery times?
-                                            </a>
-                                        </div>
-                                        <div id="id2" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. We deliver your order within 2-5 working days after dispatch in A-1 and A-2 Metros (New Delhi, Mumbai, Kolkata, Bengaluru, Chennai, Pune, Ahmedabad and Hyderabad). For the rest of the cities, we deliver between 2-7 business days. Delivery by ground takes a little longer than air couriers. Ground-shipped orders are delivered to you between 5-7 business days post-dispatch. Deliveries to very remote locations may take up to 7 business days or longer, depending on the location's geographical constraints.
-                                                <br />For addresses outside India, shipping may take 5-15 business days.
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id3">
-                                            <a class="card-title">
-                                                Q. On which days is delivery not available?
-                                            </a>
-                                        </div>
-                                        <div id="id3" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. We don’t deliver on Public, national or bank holidays.
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id4">
-                                            <a class="card-title">
-                                                Q. Are there any hidden charges such as Octroi or Sales Tax when I make the payment?
-                                            </a>
-                                        </div>
-                                        <div id="id4" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. There are no such hidden charges when you buy any product from us. The price listed on our website are final and inclusive of all taxes.  The price you see on the product page are the final prices you pay.
-                                                <br />Shipping charges may apply for addresses outside India - the same shall be communicated at the time of order processing.
-
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id5">
-                                            <a class="card-title">
-                                                Q. Is it possible to request for change the delivery address at any point of time once the order has been placed?
-                                            </a>
-                                        </div>
-                                        <div id="id5" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. Order has been placed but not dispatched.
-                                                Once the order has been placed but not dispatched that means we have received the confirmation and your order is in our warehouse where we are working to get it dispatched. So as your order is still not dispatched, you need to contact our customer service team of neelkanthpharmacyindia.com as soon as possible for the changes in the order.
-                                                <br />Please note for security reasons we will require you to answer few security questions before we can make any changes to your order.
-
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id6">
-                                            <a class="card-title">
-                                                Q. Order has been placed and dispatched.
-                                            </a>
-                                        </div>
-                                        <div id="id6" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. Once the order has been placed and dispatched, for we would be unable to redirect the order to the secondary delivery address. We apologise for any inconvenience caused and our policies are made to provide better shopping experience for all our customers.
-                                                <br />If our shipper is unable to ship the order at your provided address then order is automatically returned to our warehouse and processed as return.
-                                                <br />For any further query write us @@ neelkanthpharmacyindia.com +91-9589608667.
-
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id7">
-                                            <a class="card-title">
-                                                Q. Product cannot be shipped to my area, why?
-                                            </a>
-                                        </div>
-                                        <div id="id7" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. Although we ship to maximum places in different parts of India and we are continuously working on increasing our reach to make our products easily available to everyone in different locations. But whether the order can or cannot be delivered to your address also depends on:-
-                                                Whether our trusted delivery partner can deliver at your address.
-                                                <br />Legal Restrictions, if any, on shipping particular products to your location.
-                                                The availability of reliable courier partner in your location.
-
-                                            </p>
-                                        </div>
-
-                                        <div class="card-header collapsed question" data-toggle="collapse" href="#id8">
-                                            <a class="card-title">
-                                                Q. I have placed an order, but may not be able to receive it due to unexpected circumstances.
-                                                <br />Can you hold the delivery until I can receive it?
-                                            </a>
-                                        </div>
-                                        <div id="id8" class="card-body collapse" data-parent="#accordion" style="background-color:aliceblue">
-                                            <p>
-                                                A. If you placed order is not yet dispatched then please to contact our customer team on +91-9589608667 as soon as possible for the changes. Please note for security reasons we will require you to answer few security questions before we can make any changes to your order.
-                                                <br />But if your order is already dispatched then we are sorry we won’t be able to hold your delivery.
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="container mt-5 mb-5">
+    <div class="row mt-4 animated slideInDown">
+        <div class="col-md-12 text-center green-underline">
+            <h4>Shipping & Delivery Policy</h4>
         </div>
-    </section>
+    </div>
+    <div class="row animated slideInRight">
+        <div class="col-sm-12">
+            <h5>General Rules</h5>
+            <p>We made free shipping on orders of Rs.1001/- or more. For COD method customer will be charged additional Rs.30/- as COD charges which will be mentioned in the invoice. Free COD option is available on order of Rs.1000/- or more.</p>
+            <p>We promise to provide you with best-in-class shopping experience at every step of the way. We assure you that all due precautions are taken so that your package reaches you intact. An estimated delivery time period is displayed on the order summary page. On placing your order, you will receive an email/confirmation call containing a summary of the order and also the estimated delivery time to your location.</p>
+            <p>Sometimes, delivery may take longer due to bad weather, flight delays, political disruptions and other unforeseen circumstances. In such cases, we will proactively reach out to you. Please check your emails and SMS regularly for such updates.</p>
+            <p>The delivery time period varies from product to product due to stock availability at your order dispatch center. We are not responsible for unsatisfactory or delayed performance of services or damages or delays as a result of products which are out of stock, unavailable or back ordered.</p>
+        </div>
+    </div>
+    <div class="row animated slideInUp mt-3">
+        <div class="col-md-3">
+            <img src="~/UploadFiles/contactus.jpg" class="img-fluid" />
+        </div>
+        <div class="col-md-9">
+            <h5>General Question and Answer </h5>
+            <hr />
+
+        <button class="accordion">Q. What are the delivery charges? </button>
+        <div class="panel">
+        <p>
+        A. Delivery charges may apply on certain products/services and would be communicated at the time of order processing.
+        </p>
+        </div>
+                    
+
+                    
+        <button class="accordion">Q. What are the estimated delivery times? </button>                         
+        <div class="panel">
+        <p>
+            A. We deliver your order within 2-5 working days after dispatch in A-1 and A-2 Metros (New Delhi, Mumbai, Kolkata, Bengaluru, Chennai, Pune, Ahmedabad and Hyderabad). For the rest of the cities, we deliver between 2-7 business days. Delivery by ground takes a little longer than air couriers. Ground-shipped orders are delivered to you between 5-7 business days post-dispatch. Deliveries to very remote locations may take up to 7 business days or longer, depending on the location's geographical constraints.
+            <br />For addresses outside India, shipping may take 5-15 business days.
+        </p>
+        </div>
+
+                    
+        <button class="accordion">Q. On which days is delivery not available? </button>                        
+        <div class="panel">
+        <p>
+            A. We don’t deliver on Public, national or bank holidays.
+        </p>
+        </div>
+
+                   
+        <button class="accordion">Q. Are there any hidden charges such as Octroi or Sales Tax when I make the payment? </button> 
+                        
+        <div class="panel">
+        <p>
+            A. There are no such hidden charges when you buy any product from us. The price listed on our website are final and inclusive of all taxes.  The price you see on the product page are the final prices you pay.
+            <br />Shipping charges may apply for addresses outside India - the same shall be communicated at the time of order processing.
+
+        </p>
+        </div>
+
+                    
+        <button class="accordion">Q. Is it possible to request for change the delivery address at any point of time once the order has been placed? </button>                         
+        <div class="panel">
+        <p>
+            A. Order has been placed but not dispatched.
+            Once the order has been placed but not dispatched that means we have received the confirmation and your order is in our warehouse where we are working to get it dispatched. So as your order is still not dispatched, you need to contact our customer service team of neelkanthpharmacyindia.com as soon as possible for the changes in the order.
+            <br />Please note for security reasons we will require you to answer few security questions before we can make any changes to your order.
+
+        </p>
+        </div>
+
+                    
+        <button class="accordion">Q. Order has been placed and dispatched? </button>
+        <div class="panel">
+        <p>
+            A. Once the order has been placed and dispatched, for we would be unable to redirect the order to the secondary delivery address. We apologise for any inconvenience caused and our policies are made to provide better shopping experience for all our customers.
+            <br />If our shipper is unable to ship the order at your provided address then order is automatically returned to our warehouse and processed as return.
+            <br />For any further query write us @@ neelkanthpharmacyindia.com +91-9589608667.
+        </p>
+        </div>
+
+                    
+        <button class="accordion">Q. Product cannot be shipped to my area, why? </button>
+        <div class="panel">
+        <p>
+            A. Although we ship to maximum places in different parts of India and we are continuously working on increasing our reach to make our products easily available to everyone in different locations. But whether the order can or cannot be delivered to your address also depends on:-
+            Whether our trusted delivery partner can deliver at your address.
+            <br />Legal Restrictions, if any, on shipping particular products to your location.
+            The availability of reliable courier partner in your location.
+        </p>
+        </div>
+
+                   
+        <button class="accordion">Q. I have placed an order, but may not be able to receive it due to unexpected circumstances.
+            <br />Can you hold the delivery until I can receive it? </button> 
+        <div class="panel">
+        <p>
+            A. If you placed order is not yet dispatched then please to contact our customer team on +91-9589608667 as soon as possible for the changes. Please note for security reasons we will require you to answer few security questions before we can make any changes to your order.
+            <br />But if your order is already dispatched then we are sorry we won’t be able to hold your delivery.
+        </p>
+        </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 
 
 

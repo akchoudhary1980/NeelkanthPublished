@@ -4,12 +4,13 @@
     Neel.Models.dbContext db = new Neel.Models.dbContext();
 
     var slider = db.SliderModels.Where(x => x.IsDisplay == true).ToList();
-    var usefullproduct = db.ProductModels.Where(x => x.DisplayOn == "2").ToList();
-    var newproduct = db.ProductModels.Where(x => x.DisplayOn == "3").ToList();
-    var category = db.CategoryModels.ToList();
+
+    var usefullproduct = db.ProductModels.Where(x => x.DisplayOn == "2").Take(4).ToList();    
+
+    var category = db.CategoryModels.Take(6).ToList();
+
     var testimonial = db.TestimonialModels.ToList();
-    int i = 0; int j = 0; string act = "";
-    //int k = 0; int l = 0; string act1 = "";
+    int i = 0; int j = 0; string act = "";   
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
@@ -20,12 +21,13 @@
 
 
 <style type="text/css">
-    .carousel-control-prev {       
-        background-color:greenyellow;       
-        width:40px;     
-        height:40px;    
-        border:none;
+    .carousel-control-prev {
+        background-color: greenyellow;
+        width: 40px;
+        height: 40px;
+        border: none;
     }
+
     .carousel-control-next {
         background-color: greenyellow;
         width: 40px;
@@ -37,13 +39,13 @@
 <style>
     .image-container {
         background-image: url('../../UploadFiles/Common/getregistion.jpg');
-       /* background-image: url("img_nature.jpg");*/
+        /* background-image: url("img_nature.jpg");*/
         background-size: cover;
         position: relative;
         height: 300px;
     }
 
-    .text {
+    .cut-out {
         background-color: white;
         color: black;
         font-size: 5vw;
@@ -63,128 +65,167 @@
 <!-- Slider Section -->
 <section id="sliderbar">
     <!-- Slider -->
-    <section>
-        @*<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                @foreach (var item in slider)
-                {
-                    if (i == 0) { act = "active"; } else { act = ""; }
-                    <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@act"></li>
-                    i++;
-                }
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                @foreach (var item1 in slider)
-                {
-                    if (j == 0) { act = "active"; } else { act = ""; }
-                    <div class="carousel-item @act">
-                        <a href="@Url.Action("Shopping", "Home")"><img class="d-block img-fluid w-100" src="~/UploadFiles/@item1.Picture" alt="slide @j"></a>
-                    </div>
-                    j++;
-                }
-            </div>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @foreach (var item in slider)
+            {
+                if (i == 0) { act = "active"; } else { act = ""; }
+                <li data-target="#carouselExampleInterval" data-slide-to="@i" class="@act"></li>
+                i++;
+            }
+        </ol>
 
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>*@
-
-
-
-
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-
-                @foreach (var item in slider)
-                {
-                    if (i == 0) { act = "active"; } else { act = ""; }
-                    <li data-target="#carouselExampleInterval" data-slide-to="@i" class="@act"></li>
-                    i++;
-                }
-
-                @*<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>*@
-            </ol>
-
-            <div class="carousel-inner">
-
-                @foreach (var item1 in slider)
-                {
-                    if (j == 0) { act = "active"; } else { act = ""; }
-                    <div class="carousel-item @act" data-bs-interval="2000">
-                        <a href="@Url.Action("Shopping", "Home")"><img class="d-block img-fluid w-100" src="~/UploadFiles/@item1.Picture" alt="slide @j"></a>
-                    </div>
-                    j++;
-                }
-
-                @*<div class="carousel-item active" data-bs-interval="2000">
-                    <img src="~/UploadFiles/Common/slider1.jpg" class="d-block w-100" />
+        <div class="carousel-inner">
+            @foreach (var item1 in slider)
+            {
+                if (j == 0) { act = "active"; } else { act = ""; }
+                <div class="carousel-item @act" data-bs-interval="2000">
+                    <a href="@Url.Action("Shopping", "Home")"><img class="d-block img-fluid w-100" src="~/UploadFiles/@item1.Picture" alt="slide @j"></a>
                 </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>*@
-            </div>
-
-            <button class="carousel-control-prev my-auto" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next my-auto" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+                j++;
+            }
         </div>
-    </section>
 
-
+        <button class="carousel-control-prev my-auto" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next my-auto" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </section>
 
 
-<!-- Product Section -->
+<!-- Category Section -->
+<section class="mb-4">
+    <div class="container">
+
+        <div class="row mt-3 ">
+            <div class="col-md-12 text-center green-underline">
+                <h4>NEELKANTH PRODUCTS RANGE</h4>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+
+            @foreach (var item1 in category)
+            {
+          
+                <div class="col-md-2 text-center">
+                    <div class="text-center mb-3 image-box">
+                        <img src="~/UploadFiles/@item1.Picture" class="img-fluid" />
+                    </div>
+                    <h6 class="text-uppercase">@item1.CategoryName</h6>
+                </div>
+           
+            }
+
+
+                @*<div class="col-md-3 text-center">
+                    <div class="text-center mb-3 image-box">
+                        <img src="~/UploadFiles/Common/Untitled2.png" class="img-fluid" />
+                    </div>
+                    <h6>AYURVEDIC MEDICIINE</h6>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="text-center mb-3 image-box">
+                        <img src="~/UploadFiles/Common/Untitled3.png" class="img-fluid" />
+                    </div>
+                    <h6>HARBEL HOME CARE</h6>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="text-center mb-3 image-box">
+                        <img src="~/UploadFiles/Common/Untitled4.png" class="img-fluid" />
+                    </div>
+                    <h6>AYURVEDIC OILS</h6>
+                </div>*@
+            </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="float-end mt-3">
+                    <a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Shopping", "Home")">More Category...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Text Cut-Out -->
+
+<section class="mb-5">
+    <div class="image-container">
+        <div class="cut-out">NEELKANTH PHARMACY</div>
+    </div>
+</section>
+
+<!-- Top Product Section -->
 <section>
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-12 text-center green-underline">
-                <h4>NEELKANTH PRODUCTS</h4>
+                <h4>TOP USEFULL PRODUCTS</h4>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-3 text-center">
-                <div class="text-center mb-3 image-box">
-                    <img src="~/UploadFiles/Common/Untitled1.png" class="img-fluid" />
+
+        <div class="row mt-4 mb-5">
+            @foreach (var item in usefullproduct)
+            {
+                <div class="col-xl-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+                    <div class="card prod-view rounded-0" style="min-height:500px">
+                        <div class="prod-item text-center">
+                            <div class="prod-img">
+                                <div class="option-hover" style="top:10px;">
+                                    <button type="button" onclick="addShopItems(@item.ProductID);" class="btn btn-success rounded-0">
+                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                    </button>
+                                    <a href="@Url.Action("ProductDetails", "Home",new { id = item.ProductID })" class="btn btn-primary rounded-0">
+                                        <i class="icofont icofont-list f-20"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-warning rounded-0">
+                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger rounded-0">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </button>
+                                </div>
+
+                                <a href="@Url.Action("ProductDetails", "Home", new { id = item.ProductID })" class="hvr-shrink">
+
+                                    @if (item.Picture == "")
+                                    {
+                                        <img src="~/UploadFiles/product.png" height="200" class="img-fluid o-hidden">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/UploadFiles/@item.Picture" class="img-fluid o-hidden">
+                                    }
+                                </a>
+
+                                @{
+                                    if (@item.IsNew == true)
+                                    {
+                                        <div class="p-new"><a class="no-link" href="#"> New </a></div>
+                                    }
+                                }
+                            </div>
+                            <div class="prod-info">
+                                <h4 class="text-capitalize text-primary">@item.ProductName</h4>
+                                <div class="m-b-10">
+                                    <label style="color:gold">@item.Rating <i class="icofont-star"></i></label>
+
+                                    <a class="text-muted f-w-600 no-link"> @item.View <i class="icofont-eye"></i> | @item.Like <i class="icofont-like"></i> | @item.DisLike <i class="icofont-thumbs-down"></i> </a>
+                                </div>
+                                <span class="prod-price">@Neel.TextLib.IndianRuppes(@item.Rate) <small class="old-price">@Neel.TextLib.IndianRuppes(@item.MRP)</small></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h6>AYURVEDIC POWER</h6>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="text-center mb-3 image-box">
-                    <img src="~/UploadFiles/Common/Untitled2.png" class="img-fluid" />
-                </div>
-                <h6>AYURVEDIC MEDICIINE</h6>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="text-center mb-3 image-box">
-                    <img src="~/UploadFiles/Common/Untitled3.png" class="img-fluid" />
-                </div>
-                <h6>HARBEL HOME CARE</h6>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="text-center mb-3 image-box">
-                    <img src="~/UploadFiles/Common/Untitled4.png" class="img-fluid" />
-                </div>
-                <h6>AYURVEDIC OILS</h6>
-            </div>
+            }
         </div>
+
         <div class="row mb-3">
             <div class="col-md-12">
                 <div class="float-end mt-3">
@@ -195,11 +236,7 @@
     </div>
 </section>
 
-<section class="mb-5">
-    <div class="image-container">
-        <div class="text">NEELKANTH PHARMACY</div>
-    </div>
-</section>
+
 <!-- Icon Section -->
 <section>
     <div class="container">
@@ -307,7 +344,7 @@
 
 
 
-                            @*<div class="testimonial">
+                        @*<div class="testimonial">
                                 <p class="description">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at augue sed elit eleifend tempus. Etiam malesuada vulputate justo quis bibendum. Nam maximus ultricies rhoncus. Ut non felis vel enim dapibus.
                                 </p>
@@ -318,7 +355,7 @@
                                 <span class="post">Web Designer</span>
                             </div>*@
 
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

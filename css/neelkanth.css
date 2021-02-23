@@ -5,7 +5,29 @@
     --blue: #2BBCFB;
     --green: #BCD000;
 }
+/*end*/
+.cart-area {   
+}
 
+@media(max-width: 500px) {
+    .cart-area {       
+        margin-top:20px;
+    }
+}
+
+/*end*/
+/*end*/
+.logo-area {
+}
+
+@media(max-width: 500px) {
+    .logo-area {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/*end*/
 .no-link {
     text-decoration: none;    
 }
@@ -216,9 +238,16 @@
     text-align: right;
 }
 .slow-gun {
-    margin-left: 60px;
+    margin-left: 46px;
     color: #B8B5B5;
 }
+
+@media(max-width: 500px) {
+    .slow-gun {
+        margin-left:73px;
+    }
+}
+
 #menubar {
     background-color: #2BBCFB;
 }

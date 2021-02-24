@@ -5,13 +5,16 @@
 
     var slider = db.SliderModels.Where(x => x.IsDisplay == true).ToList();
 
-    var usefullproduct = db.ProductModels.Where(x => x.DisplayOn == "2").Take(4).ToList();    
+    var usefullproduct = db.ProductModels.Where(x => x.DisplayOn == "2").Take(4).ToList();
 
     var category = db.CategoryModels.Take(6).ToList();
 
     var testimonial = db.TestimonialModels.ToList();
-    int i = 0; int j = 0; string act = "";   
+    int i = 0; int j = 0; string act = "";
 }
+
+@model System.Data.DataTable
+@using System.Data;
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
@@ -19,6 +22,22 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 
+<!--for Search Category Wise-->
+<script type="text/javascript">
+        function seachcategory(id) {
+            // call Ajax Method
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SeachProductByCategory")',
+                dataType: 'json',
+                data: {CatID:id},
+                success: function (data) {
+                window.location.href = "@Url.Action("Shopping", "Home")";
+                //DisplayData(data);
+                }
+            });
+        }
+</script>
 
 <style type="text/css">
     .carousel-control-prev {
@@ -113,15 +132,17 @@
 
             @foreach (var item1 in category)
             {
-          
+
                 <div class="col-md-2 text-center">
-                    <div class="text-center mb-3 image-box">
-                        <img src="~/UploadFiles/@item1.Picture" class="img-fluid" />
-                    </div>
-                    <h6 class="text-uppercase">@item1.CategoryName</h6>
-                </div>           
+                    <a onclick="seachcategory(@item1.CategoryID)" class="no-link">
+                        <div class="text-center mb-3 image-box">
+                            <img src="~/UploadFiles/@item1.Picture" class="img-fluid" />
+                        </div>
+                        <h6 class="text-uppercase">@item1.CategoryName</h6>
+                    </a>
+                </div>
             }
-            </div>
+        </div>
         <div class="row mb-3">
             <div class="col-md-12">
                 <div class="float-end mt-3">
@@ -142,70 +163,70 @@
 
 <!-- Top Product Section -->
 <section>
-    <div class="container">
-        <div class="row mt-3">
+    <div class="container mt-4 mb-5">
+        <div class="row">
             <div class="col-md-12 text-center green-underline">
                 <h4>TOP USEFULL PRODUCTS</h4>
             </div>
         </div>
-
-        <div class="row mt-4 mb-5">
-            @foreach (var item in usefullproduct)
+        <div class="row">
+            @foreach (DataRow row in Model.Rows)
             {
-                <div class="col-xl-3 col-md-3 col-sm-6 col-xs-12 mb-3">
-                    <div class="card prod-view rounded-0" style="min-height:450px">
-                        <div class="prod-item text-center">
-                            <div class="prod-img">
-                                <div class="option-hover" style="top:10px;">
-                                    <button type="button" onclick="addShopItems(@item.ProductID);" class="btn btn-success rounded-0">
-                                        <i class="icofont icofont-cart-alt f-20"></i>
-                                    </button>
-                                    <a href="@Url.Action("ProductDetails", "Home",new { id = item.ProductID })" class="btn btn-primary rounded-0">
-                                        <i class="icofont icofont-list f-20"></i>
+                @*@foreach (var item in usefullproduct)
+                {*@
+                    <div class="col-xl-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="card prod-view rounded-0" style="min-height:425px">
+                            <div class="prod-item text-center">
+                                <div class="prod-img">
+                                    <div class="option-hover" style="top:10px;">
+                                        <button type="button" onclick="addShopItems(@row["ProductID"];" class="btn btn-success rounded-0">
+                                            <i class="icofont icofont-cart-alt f-20"></i>
+                                        </button>
+                                        <a href="@Url.Action("ProductDetails", "Home",new { id = row["ProductID"] })" class="btn btn-primary rounded-0">
+                                            <i class="icofont icofont-list f-20"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-warning rounded-0">
+                                            <i class="icofont icofont-eye-alt f-20"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger rounded-0">
+                                            <i class="icofont icofont-heart-alt f-20"></i>
+                                        </button>
+                                    </div>
+
+                                    <a href="@Url.Action("ProductDetails", "Home", new { id = row["ProductID"] })" class="hvr-shrink">
+
+                                        @if (row["Picture"].ToString() == "")
+                                        {
+                                            <img src="~/UploadFiles/product.png" height="200" class="img-fluid o-hidden">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/UploadFiles/@row["Picture"].ToString()" class="img-fluid o-hidden">
+                                        }
                                     </a>
-                                    <button type="button" class="btn btn-warning rounded-0">
-                                        <i class="icofont icofont-eye-alt f-20"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger rounded-0">
-                                        <i class="icofont icofont-heart-alt f-20"></i>
-                                    </button>
+
+                                    @{
+                                        if (row["IsNew"].ToString() == "True")
+                                        {
+                                            <div class="p-new"><a class="no-link" href="#"> New </a></div>
+                                        }
+                                    }
                                 </div>
+                                <div class="prod-info">
+                                    <h4 class="text-capitalize text-primary">@row["ProductName"]</h4>
+                                    <div class="m-b-10">
+                                        <label style="color:gold">@row["Rating"] <i class="icofont-star"></i></label>
 
-                                <a href="@Url.Action("ProductDetails", "Home", new { id = item.ProductID })" class="hvr-shrink">
-
-                                    @if (item.Picture == "")
-                                    {
-                                        <img src="~/UploadFiles/product.png" height="200" class="img-fluid o-hidden">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/UploadFiles/@item.Picture" class="img-fluid o-hidden">
-                                    }
-                                </a>
-
-                                @{
-                                    if (@item.IsNew == true)
-                                    {
-                                        <div class="p-new"><a class="no-link" href="#"> New </a></div>
-                                    }
-                                }
-                            </div>
-                            <div class="prod-info">
-                                <h4 class="text-capitalize text-primary">@item.ProductName</h4>
-                                <div class="m-b-10">
-                                    <label style="color:gold">@item.Rating <i class="icofont-star"></i></label>
-
-                                    <a class="text-muted f-w-600 no-link"> @item.View <i class="icofont-eye"></i> | @item.Like <i class="icofont-like"></i> | @item.DisLike <i class="icofont-thumbs-down"></i> </a>
+                                        <a class="text-muted f-w-600 no-link"> @row["View"] <i class="icofont-eye"></i> | @row["Like"] <i class="icofont-like"></i> | @row["DisLike"] <i class="icofont-thumbs-down"></i> </a>
+                                    </div>
+                                    <span class="prod-price">@Neel.TextLib.IndianRuppes(row["Rate"].ToString()) <small class="old-price">@Neel.TextLib.IndianRuppes(row["MRP"].ToString())</small></span>
                                 </div>
-                                <span class="prod-price">@Neel.TextLib.IndianRuppes(@item.Rate) <small class="old-price">@Neel.TextLib.IndianRuppes(@item.MRP)</small></span>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
-
-        <div class="row mb-2">
+                }
+            </div>
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="float-end mt-3">
                     <a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Shopping", "Home")">More Products...</a>

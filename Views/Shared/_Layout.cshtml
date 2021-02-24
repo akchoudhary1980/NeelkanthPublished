@@ -33,6 +33,27 @@
             document.getElementById("loader").style.display = "none";       
         }
     </script>
+
+    <script type="text/javascript">
+        function searchoperation() {
+            var search = $('#txtsearch').val();
+            if (search != "") {
+                //
+                    // call Ajax Method
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("SeachProduct","Home")',
+                        dataType: 'json',
+                        data: {SearchValue:search},
+                        success: function (data) {
+                        window.location.href = "@Url.Action("Shopping", "Home")";
+                        //DisplayData(data);
+                        }
+                    });
+                ///
+            }
+        }
+    </script>
 </head>
 <body onload="myFunction()" style="margin:0;">
 
@@ -54,10 +75,10 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-10 col-10 pr-zero">
-                                <input id="tbsearch" type="text" class="search-box" />
+                                <input id="txtsearch" type="text" class="search-box" />
                             </div>
                             <div class="col-md-2 col-2 pl-zero">
-                                <button class="search-button" type="button"><i class="icofont-ui-search icofont-2x"></i></button>
+                                <button class="search-button" onclick="searchoperation();" type="button"><i class="icofont-ui-search icofont-2x"></i></button>
                             </div>
                         </div>
                     </div>

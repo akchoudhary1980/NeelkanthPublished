@@ -4,11 +4,7 @@
     Neel.Models.dbContext db = new Neel.Models.dbContext();
 
     var slider = db.SliderModels.Where(x => x.IsDisplay == true).ToList();
-
-    var usefullproduct = db.ProductModels.Where(x => x.DisplayOn == "2").Take(4).ToList();
-
     var category = db.CategoryModels.Take(6).ToList();
-
     var testimonial = db.TestimonialModels.ToList();
     int i = 0; int j = 0; string act = "";
 }
@@ -32,53 +28,18 @@
                 dataType: 'json',
                 data: {CatID:id},
                 success: function (data) {
-                window.location.href = "@Url.Action("Shopping", "Home")";
-                //DisplayData(data);
+                window.location.href = "@Url.Action("Shopping", "Home")";                
                 }
             });
         }
 </script>
 
 <style type="text/css">
-    .carousel-control-prev {
-        background-color: greenyellow;
-        width: 40px;
-        height: 40px;
-        border: none;
-    }
-
-    .carousel-control-next {
-        background-color: greenyellow;
-        width: 40px;
-        height: 40px;
-        border: none;
-    }
+    
 </style>
 
 <style>
-    .image-container {
-        background-image: url('../../UploadFiles/Common/getregistion.jpg');
-        /* background-image: url("img_nature.jpg");*/
-        background-size: cover;
-        position: relative;
-        height: 300px;
-    }
-
-    .cut-out {
-        background-color: white;
-        color: black;
-        font-size: 5vw;
-        font-weight: bold;
-        margin: 0 auto;
-        padding: 10px;
-        width: 50%;
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        mix-blend-mode: screen;
-    }
+    
 </style>
 
 <!-- Slider Section -->
@@ -241,8 +202,16 @@
 <section>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-4" style="background-color:#2BBCFB">
-
+            <div class="col-md-4 left-content">
+                <div class="ayurved">
+                    आयुर्वेद एक अमृत है।
+                </div>
+                <div class="plant-base">
+                    Clean Plant Base
+                </div>
+                <div class="natural">
+                    100% Natural
+                </div>                
             </div>
             <div class="col-md-8 triangle" style="font-size:9.5px">
 
@@ -253,42 +222,42 @@
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico1.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico1.webp" class="img-fluid" />
                     <p class="mt-2">Soy Free</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico2.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico2.webp" class="img-fluid" />
                     <p class="mt-2">Gluten Free</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico3.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico3.webp" class="img-fluid" />
                     <p class="mt-2">Non GMO</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico4.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico4.webp" class="img-fluid" />
                     <p class="mt-2">No Side Effects</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico5.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico5.webp" class="img-fluid" />
                     <p class="mt-2">No Trans Fat</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico6.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico6.webp" class="img-fluid" />
                     <p class="mt-2">Lactose Free</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico7.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico7.webp" class="img-fluid" />
                     <p class="mt-2">No Preservatives</p>
                 </div>
 
                 <div class="text-center icon-box">
-                    <img src="~/UploadFiles/Common/Ico8.png" class="img-fluid" />
+                    <img src="~/UploadFiles/Common/Ico8.webp" class="img-fluid" />
                     <p class="mt-2">No Artificial Sweeteners</p>
                 </div>
             </div>
@@ -298,7 +267,7 @@
 <!-- Membership Section -->
 <section>
     <div class="parent">
-        <img src="~/UploadFiles/Common/getregistion.jpg" alt="Notebook" style="width:100%">
+        <img src="~/UploadFiles/Common/getregistion.webp" type="image/webp" alt="Notebook" style="width:100%">
         <div class="text">
             <h4 class="text-center">GET MEMBERSHIPS</h4>
             <p class="text-center">

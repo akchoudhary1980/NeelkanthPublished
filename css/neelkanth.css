@@ -5,7 +5,86 @@
     --blue: #2BBCFB;
     --green: #BCD000;
 }
+
+
+/* blue Left Side */
+.left-content {
+    background-color: #2BBCFB;
+    color: white;
+}
+
+.ayurved {
+    margin-top: 10px;
+    font-size: 4.5vw;
+    font-weight:900;
+}
+.plant-base {
+   
+    font-size: 3.5vw;
+}
+.natural {
+    font-size: 4.5vw;   
+    font-weight: 900;
+    color: yellow
+}
+
+.ayurved, .plant-base, .natural {
+    text-align: right;
+}
+
+@media(max-width: 500px) {
+    .ayurved, .plant-base, .natural {
+        text-align: center;
+    }
+    .natural
+    {
+        margin-bottom:10px;
+    }
+}
 /*end*/
+
+
+/* carousel button*/
+.carousel-control-prev {
+    background-color: greenyellow;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+
+.carousel-control-next {
+    background-color: greenyellow;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+/* end */
+
+/*cut out tex*/
+.image-container {
+    background-image: url('../../UploadFiles/Common/neelkanthdemo.webp');
+    background-size: cover;
+    position: relative;
+    height: 300px;
+}
+
+.cut-out {
+    background-color: white;
+    color: black;
+    font-size: 6.5vw;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 10px;
+    width: 45%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+}
+/*end*/
+
 .cart-area {   
 }
 

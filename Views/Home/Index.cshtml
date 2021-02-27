@@ -28,18 +28,16 @@
                 dataType: 'json',
                 data: {CatID:id},
                 success: function (data) {
-                window.location.href = "@Url.Action("Shopping", "Home")";                
+                window.location.href = "@Url.Action("Shopping", "Home")";
                 }
             });
         }
 </script>
 
 <style type="text/css">
-    
 </style>
 
 <style>
-    
 </style>
 
 <!-- Slider Section -->
@@ -134,59 +132,59 @@
             @foreach (DataRow row in Model.Rows)
             {
                 @*@foreach (var item in usefullproduct)
-                {*@
-                    <div class="col-xl-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="card prod-view rounded-0" style="min-height:425px">
-                            <div class="prod-item text-center">
-                                <div class="prod-img">
-                                    <div class="option-hover" style="top:10px;">
-                                        <button type="button" onclick="addShopItems(@row["ProductID"];" class="btn btn-success rounded-0">
-                                            <i class="icofont icofont-cart-alt f-20"></i>
-                                        </button>
-                                        <a href="@Url.Action("ProductDetails", "Home",new { id = row["ProductID"] })" class="btn btn-primary rounded-0">
-                                            <i class="icofont icofont-list f-20"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-warning rounded-0">
-                                            <i class="icofont icofont-eye-alt f-20"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger rounded-0">
-                                            <i class="icofont icofont-heart-alt f-20"></i>
-                                        </button>
-                                    </div>
-
-                                    <a href="@Url.Action("ProductDetails", "Home", new { id = row["ProductID"] })" class="hvr-shrink">
-
-                                        @if (row["Picture"].ToString() == "")
-                                        {
-                                            <img src="~/UploadFiles/product.png" height="200" class="img-fluid o-hidden">
-                                        }
-                                        else
-                                        {
-                                            <img src="~/UploadFiles/@row["Picture"].ToString()" class="img-fluid o-hidden">
-                                        }
+                    {*@
+                <div class="col-xl-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="card prod-view rounded-0" style="min-height:425px">
+                        <div class="prod-item text-center">
+                            <div class="prod-img">
+                                <div class="option-hover" style="top:10px;">
+                                    <button type="button" onclick="addShopItems(@row["ProductID"];" class="btn btn-success rounded-0">
+                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                    </button>
+                                    <a href="@Url.Action("ProductDetails", "Home",new { id = row["ProductID"] })" class="btn btn-primary rounded-0">
+                                        <i class="icofont icofont-list f-20"></i>
                                     </a>
+                                    <button type="button" class="btn btn-warning rounded-0">
+                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger rounded-0">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </button>
+                                </div>
 
-                                    @{
-                                        if (row["IsNew"].ToString() == "True")
-                                        {
-                                            <div class="p-new"><a class="no-link" href="#"> New </a></div>
-                                        }
+                                <a href="@Url.Action("ProductDetails", "Home", new { id = row["ProductID"] })" class="hvr-shrink">
+
+                                    @if (row["Picture"].ToString() == "")
+                                    {
+                                        <img src="~/UploadFiles/product.png" height="200" class="img-fluid o-hidden">
                                     }
-                                </div>
-                                <div class="prod-info">
-                                    <h4 class="text-capitalize text-primary">@row["ProductName"]</h4>
-                                    <div class="m-b-10">
-                                        <label style="color:gold">@row["Rating"] <i class="icofont-star"></i></label>
+                                    else
+                                    {
+                                        <img src="~/UploadFiles/@row["Picture"].ToString()" class="img-fluid o-hidden">
+                                    }
+                                </a>
 
-                                        <a class="text-muted f-w-600 no-link"> @row["View"] <i class="icofont-eye"></i> | @row["Like"] <i class="icofont-like"></i> | @row["DisLike"] <i class="icofont-thumbs-down"></i> </a>
-                                    </div>
-                                    <span class="prod-price">@Neel.TextLib.IndianRuppes(row["Rate"].ToString()) <small class="old-price">@Neel.TextLib.IndianRuppes(row["MRP"].ToString())</small></span>
+                                @{
+                                    if (row["IsNew"].ToString() == "True")
+                                    {
+                                        <div class="p-new"><a class="no-link" href="#"> New </a></div>
+                                    }
+                                }
+                            </div>
+                            <div class="prod-info">
+                                <h4 class="text-capitalize text-primary">@row["ProductName"]</h4>
+                                <div class="m-b-10">
+                                    <label style="color:gold">@row["Rating"] <i class="icofont-star"></i></label>
+
+                                    <a class="text-muted f-w-600 no-link"> @row["View"] <i class="icofont-eye"></i> | @row["Like"] <i class="icofont-like"></i> | @row["DisLike"] <i class="icofont-thumbs-down"></i> </a>
                                 </div>
+                                <span class="prod-price">@Neel.TextLib.IndianRuppes(row["Rate"].ToString()) <small class="old-price">@Neel.TextLib.IndianRuppes(row["MRP"].ToString())</small></span>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
+                </div>
+            }
+        </div>
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="float-end mt-3">
@@ -211,7 +209,7 @@
                 </div>
                 <div class="natural">
                     100% Natural
-                </div>                
+                </div>
             </div>
             <div class="col-md-8 triangle" style="font-size:9.5px">
 

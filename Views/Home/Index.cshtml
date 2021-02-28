@@ -59,7 +59,7 @@
             {
                 if (j == 0) { act = "active"; } else { act = ""; }
                 <div class="carousel-item @act" data-bs-interval="2000">
-                    <a href="@Url.Action("Shopping", "Home")"><img class="d-block img-fluid w-100" src="~/UploadFiles/@item1.Picture" alt="slide @j"></a>
+                    <a href="@item1.Link"><img class="d-block img-fluid w-100" src="~/UploadFiles/@item1.Picture" alt="slide @j"></a>
                 </div>
                 j++;
             }
@@ -205,7 +205,7 @@
                     आयुर्वेद एक अमृत है।
                 </div>
                 <div class="plant-base">
-                    Clean Plant Base
+                    Clean Plant Based
                 </div>
                 <div class="natural">
                     100% Natural

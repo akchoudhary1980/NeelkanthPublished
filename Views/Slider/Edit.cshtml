@@ -84,6 +84,14 @@
                     </div>
 
                     <div class="form-group row">
+                        @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         @Html.LabelFor(model => model.IsDisplay, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.CheckBoxFor(model => model.IsDisplay, new { htmlAttributes = new { @class = "form-control" } }) Yes

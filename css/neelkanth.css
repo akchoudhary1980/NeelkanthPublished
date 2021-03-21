@@ -239,6 +239,15 @@
     padding: 10px 10px 0px 10px;
     cursor:pointer;
 }
+
+@media(max-width: 500px) {
+    .social-icon {
+        width: 60px;
+        height: 60px;
+        padding: 1px 1px 0px 1px;
+        margin: 0px;
+    }
+}
 .social-icon:hover {
     background-color: #FC7C0E;
     color:white;

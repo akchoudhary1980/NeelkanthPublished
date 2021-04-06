@@ -1,0 +1,312 @@
+﻿@{
+    Layout = null;
+    int id = Convert.ToInt32(ViewData["id"].ToString());
+    Neel.Models.dbContext db = new Neel.Models.dbContext();
+    var drSale = db.SalesModels.Where(x => x.SalesID == id).SingleOrDefault();
+    var drCompany = db.CompanyModels.Where(x => x.CompanyID == 1).SingleOrDefault();
+    var drCustomer = db.CustomerModels.Where(x => x.CustomerID == drSale.CustomerID).SingleOrDefault();
+    // using join
+    var saleTrans = db.SalesTransModels.Where(x => x.SalesID == drSale.SalesID).ToList();
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Print Invoice</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Sales</title>
+    <meta name="description" content="Retails Softwares">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Basic Style Sheet -->
+    <link href="Common/bootstrap.min.css" rel="stylesheet" />
+    <link href="Common/font-awesome.min.css" rel="stylesheet" />
+
+
+    <style type="text/css">
+
+        body {
+            font-family: Arial;
+            font-size: 11px;
+            line-height: 12px;
+        }
+
+        .border-all {
+            border: 1px solid lightblue;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid lightblue;
+        }
+
+        .border-right {
+            border-right: 1px solid lightblue;
+        }
+
+        .company {
+            font-family: Arial;
+            font-size: 11px;
+            line-height: 12px;
+            text-align: right;
+        }
+
+        .customer {
+            font-family: Arial;
+            font-size: 11px;
+            line-height: 12px;
+            text-align: left;
+        }
+
+
+
+        tr td {
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            /* padding: 0 !important;*/
+            margin: 0 !important;
+        }
+
+        tr th {
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            /* padding: 0 !important;*/
+            margin: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container border-all">
+        <header>
+            <div class="row border-bottom">
+                <div class="col-md-3 col-6 p-1">
+                    <img src="@drCompany.CompanyPicture" height="60" />
+                </div>
+                <div class="col-md-9 col-6 p-1 company">
+                    <b>@drCompany.CompanyName</b>
+                    <p class="text-right m-0">
+                        @drCompany.CompanyAddress,
+                        <br /> Email: @drCompany.CompanyEmail,
+                        <br /> Mob: @drCompany.CompanyMobile
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="row border-bottom">
+                <div class="col-md-12 mt-1">
+                    <h5 class="text-center m-0">TAX INVOICE</h5>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="row border-bottom">
+                <div class="col-md-6 col-6  customer border-right">
+                    <div class="mt-2" style="background-color:dodgerblue;color:white;padding:2px;">
+                        <p class="m-0">BILL TO :</p>
+                    </div>
+                    <b>@drCustomer.CustomerName</b>
+                    <p class="m-0">
+                        @drCustomer.Address.
+                        <br />Mobile: @drCustomer.Mobile
+                        <br />Email : @drCustomer.Email
+                    </p>
+                </div>
+                <div class="col-md-6 col-6 mt-2">
+                    <p class="text-right">
+                        <b>Invoice No: @drCompany.InvoicePrefix/@drSale.SerialNo</b>
+                        <br />
+                        Date: @Neel.TextLib.GetDateDDMMYYYY(drSale.SalesDate.ToString())
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="background-color:dodgerblue;color:white">
+                                <th>#</th>
+                                <th class="text-left">PRODUCT DESCRIPTION</th>
+                                <th class="text-left">HSN</th>
+                                <th class="text-right">QTY</th>
+                                <th class="text-right">UNIT</th>
+                                <th class="text-right">RATE</th>
+                                <th class="text-right">AMOUNT</th>
+                                <th class="text-right">GST %</th>
+                                <th class="text-right">GST AMOUNT</th>
+                                <th class="text-right">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                double totalamount = 0;
+                                double totalgst = 0;
+                                double total = 0;
+                                int counter = 0;
+
+                                foreach (var item in saleTrans)
+                                {
+                                    counter = counter + 1;
+                                                        <tr>
+                                                            <td>@counter</td>
+                                                            <td>@Neel.DataLib.GetCellItems("Select ProductName From ProductModels Where ProductID =" + item.ProductID) </td>
+                                                            @*<td>@Neel.DataLib.GetCellItems("Select HSNCode From ProductModels Where ProductID =" + item.ProductID)</td>*@
+                                                            <td>123</td>
+                                                            <td class="text-right">@item.Quantity</td>
+                                                            <td class="text-right">@Neel.DataLib.GetCellItems("Select UnitName From UnitModels Where UnitID=" + item.UnitID)</td>
+                                                            <td class="text-right">@Neel.TextLib.IndianRuppes(item.Rate)</td>
+                                                            <td class="text-right">@Neel.TextLib.IndianRuppes(item.Amount)</td>
+                                                            <td class="text-right">@item.GSTSlab%</td>
+                                                            <td class="text-right">@Neel.TextLib.IndianRuppes(item.GSTAmount)</td>
+                                                            <td class="text-right">@Neel.TextLib.IndianRuppes(item.Amount + item.GSTAmount)</td>
+                                                        </tr>
+                                    totalamount = totalamount + item.Amount;
+                                    totalgst = totalgst + item.GSTAmount;
+                                    total = totalamount + totalgst;                                    
+                                }
+                            }
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-right"><b>TOTAL</b></td>
+                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(totalamount)</b></td>
+                                <td></td>
+                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(totalgst)</b></td>
+                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(total)</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10" class="text-right"><b>@Neel.TextLib.NumbertoWards((total).ToString())</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-6">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="background-color:dodgerblue;color:white">
+                                <th class="text-center" colspan="4">Bank Details (Payment In favor of)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-right">Beneficiary Name</td>
+                                <td class="text-right">@drCompany.BeneficiaryName</td>
+                                <td class="text-right">Address</td>
+                                <td class="text-right">@drCompany.CompanyAddress</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Bank Name</td>
+                                <td class="text-right">@drCompany.BankName</td>
+                                <td class="text-right">Branch Name</td>
+                                <td class="text-right">@drCompany.BranchName</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Account No</td>
+                                <td class="text-right">@drCompany.AccountNumber</td>
+                                <td class="text-right">IFSC Code</td>
+                                <td class="text-right">@drCompany.AccountIFSCCode</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="col-md-6 col-6 ">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="background-color:dodgerblue;color:white">
+                                <th class="text-right" colspan="8">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-right" colspan="7">Sub Total</td>
+                                <td class="text-right">@Neel.TextLib.IndianRuppes(totalamount)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="7">Discount</td>
+                                <td class="text-right">@Neel.TextLib.IndianRuppes("0")</td>
+                            </tr>
+
+
+                            
+                    <tr>
+                        @if (drSale.SaleState == true)
+                        {
+                            <td class="text-right">IGST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes("0")</td>
+                            <td class="text-right">CGST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes(totalgst / 2)</td>
+                            <td class="text-right">SGST</td>
+                            <td class="text-right"> @Neel.TextLib.IndianRuppes(totalgst / 2)</td>
+                            <td class="text-right">GST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes(totalgst)</td>
+                        }
+                        else
+                        {
+                            <td class="text-right">IGST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes(totalgst)</td>
+                            <td class="text-right">CGST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes("0")</td>
+                            <td class="text-right">SGST</td>
+                            <td class="text-right"> @Neel.TextLib.IndianRuppes("0")</td>
+                            <td class="text-right">GST</td>
+                            <td class="text-right">@Neel.TextLib.IndianRuppes(totalgst)</td>
+                        }
+
+<tr>
+
+
+
+                                <td class="text-right" colspan="7"><b>Grand Total</b> </td>
+                                <td class="text-right"><b>@Neel.TextLib.IndianRuppes(total)</b></td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 col-6 mt-1">                   
+                    <img src="Common/QRCode.jpg" height="75" />
+                    <p>
+                        <b>NOTICE:</b>
+                        <br />
+                        A finance charge of 1.5% will be made on unpaid balances after 30 days.
+                    </p>
+                </div>
+                <div class="col-md-6 col-6 mt-1">
+                    <p class="text-right m-0">For <b>@drCompany.CompanyName</b></p>
+                    <div class="float-right">
+                        <img src="@drCompany.SealPicture" height="100" />
+                        <p align="right">Authorised Signatory <br />
+                        @drCompany.OnwerName
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <footer>
+            <hr class="m-0" />
+            <p class="text-center m-0">This invoice was created on a computer and is valid without the signature and seal.</p>
+        </footer>
+    </div>
+</body>
+</html>

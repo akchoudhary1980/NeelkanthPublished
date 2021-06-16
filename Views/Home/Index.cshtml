@@ -208,8 +208,8 @@
                     <img src="~/UploadFiles/Common/Cer05.jpg" class="img-fluid " />
                 </div>
                 <div class="col-md-4"></div>
-            </div>        
-            
+            </div>
+
 
             <div class="col-md-3 col-6">
                 <img src="~/UploadFiles/Common/Cer01.webp" class="img-fluid" />
@@ -224,143 +224,167 @@
                 <img src="~/UploadFiles/Common/Cer04.webp" class="img-fluid" />
             </div>
         </div>
-     </div>
+    </div>
 </section>
 
-            <!-- Icon Section -->
-            <section>
-                <div class="container">
-                    <div class="row mt-5">
-                        <div class="col-md-4 left-content">
-                            <div class="ayurved">
-                                आयुर्वेद एक अमृत है।
-                            </div>
-                            <div class="plant-base">
-                                Clean <br />
-                                <span style="color:yellow">Plant</span> Based
-                            </div>
-                            <div class="natural">
-                                <img src="~/UploadFiles/Common/Icon100.png" />
-                                <img src="~/UploadFiles/Common/IconNo.png" />
-                            </div>
-                        </div>
-                        <div class="col-md-8 triangle" style="font-size:9.5px">
+<!-- Icon Section -->
+<section>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 left-content">
+                <div class="ayurved">
+                    आयुर्वेद एक अमृत है।
+                </div>
+                <div class="plant-base">
+                    Clean <br />
+                    <span style="color:yellow">Plant</span> Based
+                </div>
+                <div class="natural">
+                    <img src="~/UploadFiles/Common/Icon100.png" />
+                    <img src="~/UploadFiles/Common/IconNo.png" />
+                </div>
+            </div>
+            <div class="col-md-8 triangle" style="font-size:9.5px">
 
-                            <div class="row">
-                                <div class="col-md-12 text-center green-underline">
-                                    <h4>ADD EVEN BETTER WITH US </h4>
+                <div class="row">
+                    <div class="col-md-12 text-center green-underline">
+                        <h4>ADD EVEN BETTER WITH US </h4>
+                    </div>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico1.webp" class="img-fluid" />
+                    <p class="mt-1">Soy Free</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico2.webp" class="img-fluid" />
+                    <p class="mt-1">Gluten Free</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico3.webp" class="img-fluid" />
+                    <p class="mt-1">Non GMO</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico4.webp" class="img-fluid" />
+                    <p class="mt-1">No Side Effects</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico5.webp" class="img-fluid" />
+                    <p class="mt-1">No Trans Fat</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico6.webp" class="img-fluid" />
+                    <p class="mt-1">Lactose Free</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico7.webp" class="img-fluid" />
+                    <p class="mt-1">No Preservatives</p>
+                </div>
+
+                <div class="text-center icon-box">
+                    <img src="~/UploadFiles/Common/Ico8.webp" class="img-fluid" />
+                    <p class="mt-2">No Artificial Sweeteners</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Membership Section -->
+<section>
+    <div class="parent">
+        <img src="~/UploadFiles/Common/getregistion.webp" type="image/webp" alt="Notebook" style="width:100%">
+        <div class="text">
+            <h4 class="text-center">GET MEMBERSHIPS</h4>
+            <p class="text-center">
+                Get membership of Neelkanth and get exciting offer according to membership package.
+            </p>
+            <div class="row">
+                <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Silver</a></div>
+                <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Gold</a></div>
+                <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Diamond</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Testimonial Section -->
+<section id="testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center green-underline">
+                <h4 style="color:black">TESTIMONIAL</h4>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <div class="testimonial-bg">
+                    <div id="testimonial-slider" class="owl-carousel">
+
+                        @foreach (var item8 in testimonial)
+                        {
+                            <div class="testimonial">
+                                <p class="description">
+                                    @item8.Testimonial
+                                </p>
+                                <div class="pic">
+                                    <img src="~/UploadFiles/@item8.Picture" />
                                 </div>
+                                <h3 class="title">@item8.Title</h3>
+                                <span class="post">@item8.QuoteBy</span>
                             </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico1.webp" class="img-fluid" />
-                                <p class="mt-1">Soy Free</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico2.webp" class="img-fluid" />
-                                <p class="mt-1">Gluten Free</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico3.webp" class="img-fluid" />
-                                <p class="mt-1">Non GMO</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico4.webp" class="img-fluid" />
-                                <p class="mt-1">No Side Effects</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico5.webp" class="img-fluid" />
-                                <p class="mt-1">No Trans Fat</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico6.webp" class="img-fluid" />
-                                <p class="mt-1">Lactose Free</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico7.webp" class="img-fluid" />
-                                <p class="mt-1">No Preservatives</p>
-                            </div>
-
-                            <div class="text-center icon-box">
-                                <img src="~/UploadFiles/Common/Ico8.webp" class="img-fluid" />
-                                <p class="mt-2">No Artificial Sweeteners</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Membership Section -->
-            <section>
-                <div class="parent">
-                    <img src="~/UploadFiles/Common/getregistion.webp" type="image/webp" alt="Notebook" style="width:100%">
-                    <div class="text">
-                        <h4 class="text-center">GET MEMBERSHIPS</h4>
-                        <p class="text-center">
-                            Get membership of Neelkanth and get exciting offer according to membership package.
-                        </p>
-                        <div class="row">
-                            <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Silver</a></div>
-                            <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Gold</a></div>
-                            <div class="col-md-4 col-4 text-center"><a id="moreprduct" class="more-product no-link-white" href="@Url.Action("Package", "Home")">Diamond</a></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--Testimonial Section -->
-            <section id="testimonial">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center green-underline">
-                            <h4 style="color:black">TESTIMONIAL</h4>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-8">
-                            <div class="testimonial-bg">
-                                <div id="testimonial-slider" class="owl-carousel">
-
-                                    @foreach (var item8 in testimonial)
-                                    {
-                                        <div class="testimonial">
-                                            <p class="description">
-                                                @item8.Testimonial
-                                            </p>
-                                            <div class="pic">
-                                                <img src="~/UploadFiles/@item8.Picture" />
-                                            </div>
-                                            <h3 class="title">@item8.Title</h3>
-                                            <span class="post">@item8.QuoteBy</span>
-                                        </div>
-                                    }
+                        }
 
 
 
-                                    @*<div class="testimonial">
-                                            <p class="description">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at augue sed elit eleifend tempus. Etiam malesuada vulputate justo quis bibendum. Nam maximus ultricies rhoncus. Ut non felis vel enim dapibus.
-                                            </p>
-                                            <div class="pic">
-                                                <img src="images/img-2.jpg" alt="">
-                                            </div>
-                                            <h3 class="title">kristiana,</h3>
-                                            <span class="post">Web Designer</span>
-                                        </div>*@
-
+                        @*<div class="testimonial">
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at augue sed elit eleifend tempus. Etiam malesuada vulputate justo quis bibendum. Nam maximus ultricies rhoncus. Ut non felis vel enim dapibus.
+                                </p>
+                                <div class="pic">
+                                    <img src="images/img-2.jpg" alt="">
                                 </div>
-                            </div>
-                        </div>
+                                <h3 class="title">kristiana,</h3>
+                                <span class="post">Web Designer</span>
+                            </div>*@
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Slider Play Automatic -->
-            <script type="text/javascript">
+<!--Amazon Section -->
+<section id="testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center green-underline">
+                <h4 style="color:black">Product On Amazon</h4>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-3">
+                <iframe style="width:220px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" 
+                        src="//ws-in.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=IN&source=ac&ref=tf_til&ad_type=product_link&tracking_id=rajesh220800-21&marketplace=amazon&amp;region=IN&placement=B093KHRJZ5&asins=B093KHRJZ5&linkId=713367e275b75d90bb860067e4367bfe&show_border=false&link_opens_in_new_window=false&price_color=333333&title_color=0066C0&bg_color=FFFFFF">
+                </iframe>
+            </div>
+            <div class="col-md-3">                           
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Slider Play Automatic -->
+<script type="text/javascript">
                 $(document).ready(function () {
                     $("#testimonial-slider").owlCarousel({
                         items: 1,
@@ -373,5 +397,5 @@
                         autoPlay: true
                     });
                 });
-            </script>
+</script>
 
